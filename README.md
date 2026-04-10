@@ -51,11 +51,13 @@ The project follows strict engineering standards to ensure scalability and type 
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/osama-abdelsattar/merqo.git
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -64,6 +66,7 @@ The project follows strict engineering standards to ensure scalability and type 
    Copy `.env.example` to `.env.local` and fill in your credentials.
 
 4. Run the development server:
+
    ```bash
    npm run dev
    ```
