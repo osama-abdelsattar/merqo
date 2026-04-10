@@ -1,0 +1,14 @@
+@import "../../../globals.css" reference;
+
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  @apply absolute top-1/2 -translate-y-1/2 z-10 disabled:hidden active:not-aria-[haspopup]:translate-y-[calc(-50%+1px)] opacity-0 group-hover:opacity-100;
+}
+
+.swiper-button-prev-custom {
+  @apply left-4;
+}
+
+.swiper-button-next-custom {
+  @apply right-4;
+}

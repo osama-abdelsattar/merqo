@@ -1,15 +1,15 @@
-import Brand from "@/components/navbar/brand";
-import SearchField from "@/components/navbar/search-field";
-import NavigationItems from "@/components/navbar/navigation-items";
-import MobileMenu from "@/components/navbar/mobile-menu";
+"use client";
+import Brand from "@/components/layout/navbar-components/brand";
+import MobileMenu from "@/components/layout/navbar-components/mobile-menu";
+import DesktopMenu from "@/components/layout/navbar-components/desktop-menu";
+import { useBreakpoint } from "@/hooks/use-breakpoint";
 
 export default function Navbar(props: React.ComponentProps<"nav">) {
+  const isMobile = useBreakpoint("mobile");
   return (
     <nav {...props}>
       <Brand />
-      <SearchField className="hidden sm:flex md:grow" />
-      <NavigationItems className="hidden md:flex items-center gap-3" />
-      <MobileMenu direction="left" />
+      {isMobile ? <MobileMenu direction="left" /> : <DesktopMenu />}
     </nav>
   );
 }

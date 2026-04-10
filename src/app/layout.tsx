@@ -4,12 +4,9 @@ import {
   Plus_Jakarta_Sans,
   DM_Serif_Display,
 } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import { cn } from "@/lib/utils";
-import { SITE_INFO } from "@/config/site";
-import { Toaster } from "@/components/ui/sonner";
-import Footer from "@/components/layout/footer";
-import Navbar from "@/components/layout/navbar";
+import { SITE_INFO } from "@/config/site.config";
 import AppProviders from "@/components/providers/app-providers";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -49,14 +46,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <AppProviders>
-          <header className="px-6 h-20 border-b fixed top-0 inset-x-0 z-50 bg-background/95 backdrop-blur-2xl">
-            <Navbar className="max-w-7xl mx-auto flex items-center justify-between gap-6 h-full" />
-          </header>
-          <main className="mt-20 px-6">{children}</main>
-          <Footer />
-          <Toaster position="top-center" duration={3000} />
-        </AppProviders>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

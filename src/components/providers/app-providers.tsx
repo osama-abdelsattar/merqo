@@ -1,13 +1,29 @@
 "use client";
 
-import { TooltipProvider } from "@/components/ui/tooltip";
-import ThemeProvider from "./theme-provider";
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-export default function AppProviders({
+import { TooltipProvider } from "@/components/ui/tooltip";
+import ThemeProvider from "@/components/providers/theme-provider";
+import { SessionProvider } from "next-auth/react";
+import { AppToaster } from "@/components/layout/app-toaster";
+
+function AppProviders({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+          },
+        },
+      }),
+  );
+
   return (
     <ThemeProvider
       attribute="class"
@@ -15,7 +31,14 @@ export default function AppProviders({
       enableSystem
       disableTransitionOnChange
     >
-      <TooltipProvider>{children}</TooltipProvider>
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+          <AppToaster />
+        </SessionProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }
+
+export { AppProviders as default };

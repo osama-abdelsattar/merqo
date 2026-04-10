@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import "./section-header.css";
+import "@/components/ui/section-header.css";
 
 export default function SectionHeader({
   className,

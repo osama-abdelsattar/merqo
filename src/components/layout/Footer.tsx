@@ -1,11 +1,14 @@
-import { SITE_INFO } from "@/config/site";
+"use client";
+import { SITE_INFO } from "@/config/site.config";
 import Link from "next/link";
-import Brand from "../navbar/brand";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
-import { FOOTER_SECTIONS, PAYMENT_METHODS } from "@/config/footer";
+import Brand from "@/components/layout/navbar-components/brand";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useFooter } from "@/hooks/use-footer";
+import { PAYMENT_METHODS } from "@/config/footer.config";
 
 export default function Footer() {
+  const { footerSections: FOOTER_SECTIONS } = useFooter();
   return (
     <footer className="bg-muted/60 dark:bg-card/80 *:container *:max-w-7xl *:mx-auto *:px-4">
       <div className="py-8">
