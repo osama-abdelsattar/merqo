@@ -15,7 +15,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 
-export default function SignupPage() {
+function SignupPage() {
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -78,3 +78,5 @@ export default function SignupPage() {
     </AuthCard>
   );
 }
+
+export default SignupPage;

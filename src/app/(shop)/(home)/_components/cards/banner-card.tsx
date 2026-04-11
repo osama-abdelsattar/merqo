@@ -15,7 +15,7 @@ interface BannerCard extends React.ComponentProps<"div"> {
   banner: Banner;
 }
 
-export default function BannerCard({
+function BannerCard({
   banner,
   className,
   ...props
@@ -102,3 +102,5 @@ export default function BannerCard({
     </div>
   );
 }
+
+export default BannerCard;

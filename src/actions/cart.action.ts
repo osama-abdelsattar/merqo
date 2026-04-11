@@ -61,4 +61,22 @@ async function deleteFromCart(productId: string): Promise<Cart | null> {
   }
 }
 
-export { addToCart, getCartData, deleteFromCart };
+async function clearCart(): Promise<Cart | null> {
+  const token = await getServerToken();
+
+  try {
+    const res = await axios.delete<Cart>(buildApiUrl(["cart"], {}, "v2"), {
+      headers: { token },
+    });
+    const data = res.data;
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return error.response?.data;
+    }
+    return null;
+  }
+}
+
+export { addToCart, getCartData, deleteFromCart, clearCart };

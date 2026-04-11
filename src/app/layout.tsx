@@ -9,6 +9,10 @@ import { cn } from "@/lib/utils";
 import { SITE_INFO } from "@/config/site.config";
 import AppProviders from "@/components/providers/app-providers";
 
+// CSS
+import "@/styles/section-header.css";
+import "@/styles/hover-link.css";
+
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -22,12 +26,12 @@ const dmSerifDisplay = DM_Serif_Display({
   weight: "400",
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: SITE_INFO.name,
   description: SITE_INFO.description,
 };
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -51,3 +55,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export { RootLayout as default, metadata };

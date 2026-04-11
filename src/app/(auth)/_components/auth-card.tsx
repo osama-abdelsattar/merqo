@@ -4,7 +4,7 @@ import React from "react";
 
 type AuthCardProps = React.ComponentProps<typeof Card>;
 
-export default function AuthCard({
+function AuthCard({
   children,
   className,
   ...props
@@ -21,3 +21,5 @@ export default function AuthCard({
     </Card>
   );
 }
+
+export default AuthCard;

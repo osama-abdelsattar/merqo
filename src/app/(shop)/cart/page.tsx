@@ -14,11 +14,28 @@ import { useCart } from "@/hooks/use-cart";
 import { ArrowLeftIcon, ShoppingCartIcon, TagIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import ProductListLayout from "@/components/layout/product-list-layout";
+import DeleteAlertButton from "@/components/ui/delete-alert";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { clearCart } from "@/actions/cart.action";
 
-export default function CartPage() {
+function CartPage() {
   const { cartData, isLoading } = useCart();
   const totalPrice = cartData?.data.totalCartPrice.toLocaleString("en-EG");
 
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: clearCart,
+    onSuccess: (data) => {
+      if (data) {
+        toast.info(data.message);
+        queryClient.invalidateQueries({ queryKey: ["cart"] });
+      }
+    },
+    onError(error) {
+      toast.error(error.message);
+    },
+  });
   return (
     <ProductListLayout
       title="Cart"
@@ -29,19 +46,21 @@ export default function CartPage() {
         cta: { href: "login", text: "Login" },
       }}
       listFooter={
-        <div className="flex justify-between">
+        <div className="flex flex-col sm:flex-row gap-2 items-center sm:justify-between">
           <Button variant="outline" size="lg" asChild>
             <Link href="/">
               <ArrowLeftIcon /> Continue shopping
             </Link>
           </Button>
-          <Button variant="ghost" size="lg">
-            <XIcon /> Clear Cart
-          </Button>
+          <DeleteAlertButton mutate={mutate}>
+            <Button variant="ghost" size="lg">
+              <XIcon /> Clear Cart
+            </Button>
+          </DeleteAlertButton>
         </div>
       }
       sidebar={
-        <Card>
+        <Card className="rounded-none sm:rounded-4xl">
           <CardHeader>
             <CardTitle>
               <h3 className="text-xl font-bold font-serif">Order Summary</h3>
@@ -87,3 +106,5 @@ export default function CartPage() {
     </ProductListLayout>
   );
 }
+
+export default CartPage;

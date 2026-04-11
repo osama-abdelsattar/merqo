@@ -1,4 +1,4 @@
-@import "../../app/globals.css" reference;
+@import "../app/globals.css" reference;
 
 .section-header {
   @apply relative text-2xl sm:text-3xl md:text-4xl font-semibold font-serif w-fit mx-auto;

@@ -1,8 +1,8 @@
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
-import ScrollToTop from "@/app/_components/scroll-to-top";
+import ScrollToTop from "@/app/(shop)/_components/scroll-to-top";
 
-export default function HomeLayout({
+function HomeLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -18,3 +18,5 @@ export default function HomeLayout({
     </>
   );
 }
+
+export default HomeLayout;

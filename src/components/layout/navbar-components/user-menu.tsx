@@ -1,6 +1,8 @@
-import { AUTH_LINKS } from "@/config/navigation.config";
+"use client";
+
+import { AUTH_LINKS, USER_MENU_LINKS } from "@/config/navigation.config";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LogOutIcon, PackageIcon, User2Icon } from "lucide-react";
+import { LogOutIcon, User2Icon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,9 +17,23 @@ import { getInitials } from "@/utils/text.util";
 import LogOutAlertButton from "@/components/ui/logout-alert";
 import { useSession } from "next-auth/react";
 import { Separator } from "@/components/ui/separator";
+import { useCart } from "@/hooks/use-cart";
+import { useWishlist } from "@/hooks/use-wishlist";
+import { Url } from "next/dist/shared/lib/router/router";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
-export default function UserMenu() {
+function UserMenu() {
   const token = useSession();
+
+  const { cartData } = useCart();
+  const { data: wishlistData } = useWishlist();
+
+  const cartBadge = cartData?.numOfCartItems;
+  const wishlistBadge = wishlistData?.count;
+
+  const badge = (href: Url) =>
+    href === "/cart" ? cartBadge : href === "/wishlist" ? wishlistBadge : null;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,14 +54,24 @@ export default function UserMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="flex flex-col gap-1" align="end">
         <DropdownMenuGroup>
-          <DropdownMenuItem
-            className="rounded-xl focus-visible:ring-0 border-0"
-            asChild
-          >
-            <Link href="/allorders">
-              <PackageIcon /> Orders
-            </Link>
-          </DropdownMenuItem>
+          {USER_MENU_LINKS.map((link) => (
+            <DropdownMenuItem key={link.label} className="rounded-xl" asChild>
+              <Link
+                href={link.href}
+                className={cn(
+                  "focus-visible:ring-0 border-0",
+                  badge(link.href) && "flex items-center justify-between",
+                )}
+              >
+                {link.Icon && <link.Icon />} {link.label}
+                {badge(link.href) && (
+                  <Badge className="ms-auto p-0 size-5 text-xs">
+                    {badge(link.href)}
+                  </Badge>
+                )}
+              </Link>
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuGroup>
         <Separator />
         <DropdownMenuGroup>
@@ -83,3 +109,5 @@ export default function UserMenu() {
     </DropdownMenu>
   );
 }
+
+export default UserMenu;

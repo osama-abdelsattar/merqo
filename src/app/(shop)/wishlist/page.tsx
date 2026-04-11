@@ -10,7 +10,7 @@ import AddToCartButton from "@/app/(shop)/_components/add-to-cart-button";
 import { Spinner } from "@/components/ui/spinner";
 import DeleteAlertButton from "@/components/ui/delete-alert";
 
-export default function WishlistPage() {
+function WishlistPage() {
   const { data: wishlistData, isLoading } = useWishlist();
   const { mutate: toggleWishlist, isPending } = useWishlistMutation();
 
@@ -26,7 +26,7 @@ export default function WishlistPage() {
         cta: { href: "/", text: "Start Shopping" },
       }}
       listFooter={
-        <div className="flex justify-start">
+        <div className="flex justify-center sm:justify-start">
           <Button variant="outline" size="lg" asChild>
             <Link href="/">
               <ArrowLeftIcon /> Continue shopping
@@ -61,7 +61,7 @@ export default function WishlistPage() {
           }
           actions={
             <div className="flex items-center justify-between w-full gap-4">
-              <span className="text-4xl font-bold whitespace-nowrap">
+              <span className="text-2xl sm:text-3xl md:text-4xl font-bold whitespace-nowrap">
                 {product.priceAfterDiscount || product.price}£
               </span>
               <AddToCartButton productID={product._id} />
@@ -72,3 +72,5 @@ export default function WishlistPage() {
     </ProductListLayout>
   );
 }
+
+export default WishlistPage;

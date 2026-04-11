@@ -8,9 +8,6 @@ import {
   CalendarIcon,
   CheckCircle2,
   ClockIcon,
-  User2Icon,
-  PhoneIcon,
-  MailIcon,
 } from "lucide-react";
 
 import {
@@ -23,13 +20,14 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import type { Order } from "@/types/order.type";
-import { OrderInvoiceSheet } from "@/app/(shop)/allorders/_components/order-invoice-sheet";
+import OrderInvoiceSheet from "@/app/(shop)/allorders/_components/order-invoice-sheet";
+import CustomerInfo from "./customer-info";
 
 interface OrderCardProps extends React.ComponentProps<typeof Card> {
   order: Order;
 }
 
-export default function OrderCard({ order, ...props }: OrderCardProps) {
+function OrderCard({ order, ...props }: OrderCardProps) {
   const dateFormatter = React.useMemo(
     () =>
       new Intl.DateTimeFormat("en-US", {
@@ -94,39 +92,22 @@ export default function OrderCard({ order, ...props }: OrderCardProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Customer Details */}
           <div className="space-y-3">
-            <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-              Customer Details
-            </h4>
-            <div className="space-y-2 text-sm">
-              <p className="flex items-center gap-2 font-medium">
-                <User2Icon className="h-4 w-4 text-muted-foreground" />
-                {order.user.name}
-              </p>
-              <p className="flex items-center gap-2 text-muted-foreground">
-                <MailIcon className="h-4 w-4" />
-                {order.user.email}
-              </p>
-              <p className="flex items-center gap-2 text-muted-foreground">
-                <PhoneIcon className="h-4 w-4" />
-                {order.user.phone}
-              </p>
-            </div>
+            <h4 className="font-serif text-lg">Customer Details</h4>
+            <CustomerInfo className="space-y-2" customer={order.user} />
           </div>
 
           {/* Payment Info */}
           <div className="space-y-3">
-            <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-              Payment Method
-            </h4>
+            <h4 className="font-serif text-lg">Payment Method</h4>
             <div className="flex items-center gap-2 text-sm font-medium">
               {order.paymentMethodType === "cash" ? (
                 <>
-                  <BanknoteIcon className="h-4 w-4 text-emerald-500" />
+                  <BanknoteIcon className="size-4" />
                   Cash on Delivery
                 </>
               ) : (
                 <>
-                  <CreditCardIcon className="h-4 w-4 text-primary" />
+                  <CreditCardIcon className="size-4" />
                   Visa / Credit Card
                 </>
               )}
@@ -171,3 +152,5 @@ export default function OrderCard({ order, ...props }: OrderCardProps) {
     </Card>
   );
 }
+
+export default OrderCard;

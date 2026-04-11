@@ -9,7 +9,7 @@ import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 
-export default function HeroSection(props: React.ComponentProps<"section">) {
+function HeroSection(props: React.ComponentProps<"section">) {
   return (
     <section {...props}>
       <Swiper modules={[Autoplay]} autoplay={{ delay: 4000 }}>
@@ -73,3 +73,5 @@ export default function HeroSection(props: React.ComponentProps<"section">) {
     </section>
   );
 }
+
+export default HeroSection;

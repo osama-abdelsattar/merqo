@@ -13,7 +13,10 @@ import { CTA } from "@/types/hero-slide.type";
 import { BadgeXIcon, Globe } from "lucide-react";
 import Link from "next/link";
 
-interface EmptyCardProps extends Omit<React.ComponentProps<typeof Empty>, "title"> {
+interface EmptyCardProps extends Omit<
+  React.ComponentProps<typeof Empty>,
+  "title"
+> {
   title: string;
   cta?: CTA;
 }

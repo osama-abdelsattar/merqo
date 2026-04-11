@@ -1,26 +1,33 @@
 import AnimatedSection from "@/components/ui/animated-section";
 import SectionHeader from "@/components/ui/section-header";
-import categories from "@/actions/categories.action";
 import CategoryCard from "@/app/(shop)/(home)/_components/cards/category-card";
-import { Suspense } from "react";
-import Skeleton from "@/app/(shop)/categories/_components/skeleton";
+import EmptyCategories from "../category/_components/empty-categories";
+import { getTopCategories } from "@/services/category.service";
 
-export default async function Categories() {
-  const CATEGORIES = await categories();
+async function Categories() {
+  const categories = (await getTopCategories())?.toReversed();
+
+  if (!categories || !(categories.length > 0))
+    return (
+      <section className="min-h-[calc(100dvh-5rem)] flex items-center justify-center">
+        <EmptyCategories />
+      </section>
+    );
+
   return (
-    <Suspense fallback={<Skeleton />}>
-      <AnimatedSection>
-        <SectionHeader>Categories</SectionHeader>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-          {CATEGORIES?.map((category) => (
-            <CategoryCard
-              key={category._id}
-              category={category}
-              className="aspect-square"
-            />
-          ))}
-        </div>
-      </AnimatedSection>
-    </Suspense>
+    <AnimatedSection>
+      <SectionHeader>Categories</SectionHeader>
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+        {categories.map((category) => (
+          <CategoryCard
+            key={category._id}
+            category={category}
+            className="aspect-square"
+          />
+        ))}
+      </div>
+    </AnimatedSection>
   );
 }
+
+export default Categories;

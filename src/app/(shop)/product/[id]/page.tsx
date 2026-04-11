@@ -5,7 +5,7 @@ import ProductImage from "@/app/(shop)/product/_components/product-image";
 import ProductInfoCard from "@/app/(shop)/product/_components/product-info-card";
 import AnimatedSection from "@/components/ui/animated-section";
 
-export default async function ProductPage({
+async function ProductPage({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -31,3 +31,5 @@ export default async function ProductPage({
     </AnimatedSection>
   );
 }
+
+export default ProductPage;

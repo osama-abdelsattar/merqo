@@ -5,10 +5,8 @@ import ProductCard from "@/app/(shop)/(home)/_components/cards/product-card";
 import EmptyProducts from "@/app/(shop)/(home)/_components/cards/empty-products";
 import Pagination from "@/app/(shop)/products/_components/pagination";
 import { SearchParams } from "next/dist/server/request/search-params";
-import { Suspense } from "react";
-import Skeleton from "@/app/(shop)/products/_components/skeleton";
 
-export default async function AllProducts({
+async function AllProducts({
   searchParams,
 }: {
   searchParams: Promise<SearchParams>;
@@ -16,27 +14,27 @@ export default async function AllProducts({
   const params = await searchParams;
 
   const allProducts = await getAllProducts(params);
+
+  if (!allProducts || !(allProducts?.data.length > 0))
+    return (
+      <section className="min-h-[calc(100dvh-5rem)] flex items-center justify-center">
+        <EmptyProducts />
+      </section>
+    );
+
   return (
-    <Suspense fallback={<Skeleton />}>
-      <AnimatedSection>
-        <SectionHeader>Products</SectionHeader>
-        {allProducts && allProducts.results !== 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {allProducts.data.map((product) => (
-              <ProductCard
-                key={product._id}
-                product={product}
-                className="pt-0"
-              />
-            ))}
-            <div className="col-span-full">
-              <Pagination metadata={allProducts.metadata} />
-            </div>
-          </div>
-        ) : (
-          <EmptyProducts className="col-span-full" />
-        )}
-      </AnimatedSection>
-    </Suspense>
+    <AnimatedSection>
+      <SectionHeader>Products</SectionHeader>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {allProducts.data.map((product) => (
+          <ProductCard key={product._id} product={product} className="pt-0" />
+        ))}
+        <div className="col-span-full">
+          <Pagination metadata={allProducts.metadata} />
+        </div>
+      </div>
+    </AnimatedSection>
   );
 }
+
+export default AllProducts;

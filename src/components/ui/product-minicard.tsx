@@ -1,4 +1,4 @@
-import { Cart, CartItem } from "@/types/cart.type";
+import { CartItem } from "@/types/cart.type";
 import QuantitySelect from "@/components/ui/quantity-select";
 import { deleteFromCart } from "@/actions/cart.action";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -21,7 +21,7 @@ export default function ProductMiniCard({
       const res = await deleteFromCart(productID);
       return res;
     },
-    onSuccess: (data: Cart | null) => {
+    onSuccess: (data) => {
       if (data) {
         toast.info(data.message);
         queryClient.invalidateQueries({ queryKey: ["cart"] });

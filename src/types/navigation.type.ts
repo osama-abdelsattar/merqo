@@ -1,7 +1,8 @@
 import { Icon } from "@/types/icon.type";
+import { Url } from "next/dist/shared/lib/router/router";
 
 interface NavLink {
-  href: string;
+  href: Url;
   label: string;
   Icon?: Icon;
   iconOnly?: boolean;

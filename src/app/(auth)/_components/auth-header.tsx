@@ -13,7 +13,7 @@ interface AuthHeaderProps extends React.ComponentProps<typeof CardHeader> {
   description: string;
 }
 
-export default function AuthHeader({
+function AuthHeader({
   title,
   description,
   className,
@@ -29,3 +29,5 @@ export default function AuthHeader({
     </CardHeader>
   );
 }
+
+export default AuthHeader;

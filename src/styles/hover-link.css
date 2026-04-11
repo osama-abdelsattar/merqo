@@ -1,0 +1,7 @@
+@import "../app/globals.css" reference;
+
+@layer components {
+  .hover-link {
+    @apply flex underline underline-offset-2 decoration-muted-foreground/40 hover:decoration-muted-foreground/90 transition-[text-decoration-color] text-muted-foreground;
+  }
+}

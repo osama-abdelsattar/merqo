@@ -6,7 +6,7 @@ import CategoriesSkeleton from "@/app/(shop)/(home)/_components/skeleton/Categor
 import ProductsSkeleton from "@/app/(shop)/(home)/_components/skeleton/ProductsSkeleton";
 import PromoCodes from "@/app/(shop)/(home)/_components/sections/promo-codes";
 
-export default function Home() {
+function Home() {
   return (
     <>
       <HeroSection className="-mx-6 mb-8" />
@@ -23,3 +23,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

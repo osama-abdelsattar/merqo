@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function ViewMoreCard() {
+function ViewMoreCard() {
   return (
     <Link
       href="/products"
@@ -33,3 +33,5 @@ export default function ViewMoreCard() {
     </Link>
   );
 }
+
+export default ViewMoreCard;

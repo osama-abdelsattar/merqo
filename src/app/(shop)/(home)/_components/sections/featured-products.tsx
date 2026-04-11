@@ -5,7 +5,7 @@ import ProductCard from "@/app/(shop)/(home)/_components/cards/product-card";
 import AnimatedSection from "@/components/ui/animated-section";
 import SectionHeader from "@/components/ui/section-header";
 
-export default async function FeaturedProducts() {
+async function FeaturedProducts() {
   const productList = await getFeaturedProducts();
 
   return (
@@ -24,3 +24,5 @@ export default async function FeaturedProducts() {
     </AnimatedSection>
   );
 }
+
+export default FeaturedProducts;

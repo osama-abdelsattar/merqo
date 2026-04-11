@@ -6,11 +6,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useCategories } from "@/hooks/use-categories";
+import { CATEGORY_LINKS } from "@/config/navigation.config";
 import Link from "next/link";
 
 export default function CategoriesMenu() {
-  const { data: CATEGORY_LINKS } = useCategories();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

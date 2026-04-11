@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { useFooter } from "@/hooks/use-footer";
 import { PAYMENT_METHODS } from "@/config/footer.config";
 
-export default function Footer() {
+function Footer() {
   const { footerSections: FOOTER_SECTIONS } = useFooter();
   return (
     <footer className="bg-muted/60 dark:bg-card/80 *:container *:max-w-7xl *:mx-auto *:px-4">
@@ -109,3 +109,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default Footer;

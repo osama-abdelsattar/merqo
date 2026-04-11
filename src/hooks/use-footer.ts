@@ -1,23 +1,31 @@
-import { useCategories } from "@/hooks/use-categories";
-import { NAV_LINKS, ADDITIONAL_LINKS } from "@/config/navigation.config";
+import {
+  NAV_LINKS,
+  ADDITIONAL_LINKS,
+  CATEGORY_LINKS,
+} from "@/config/navigation.config";
 import { FOOTER_STRUCTURE } from "@/config/footer.config";
+import { NavLink } from "@/types/navigation.type";
+import { FooterSection } from "@/types/footer.type";
 
-export const useFooter = () => {
-  const { data: categories, isLoading } = useCategories();
+const useFooter = () => {
+  const exploreLinks: NavLink[] = [
+    ...NAV_LINKS,
+    { label: "Categories", href: "/categories" },
+    ...ADDITIONAL_LINKS,
+  ];
 
-  const exploreLinks = [...NAV_LINKS, ...ADDITIONAL_LINKS];
-
-  const footerSections = [
+  const footerSections: FooterSection[] = [
     {
       title: FOOTER_STRUCTURE.EXPLORE_TITLE,
       items: exploreLinks,
     },
     {
       title: FOOTER_STRUCTURE.SHOP_TITLE,
-      items: categories || [],
-      isLoading: isLoading,
+      items: CATEGORY_LINKS,
     },
   ];
 
   return { footerSections };
 };
+
+export { useFooter };

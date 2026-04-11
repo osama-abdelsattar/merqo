@@ -5,7 +5,7 @@ import { EyeIcon } from "lucide-react";
 import TooltipButton from "@/components/ui/tooltip-button";
 import WishlistButton from "@/app/(shop)/_components/wishlist-button";
 
-export default function ProductCardActions({
+function ProductCardActions({
   productID,
 }: {
   productID: string;
@@ -26,3 +26,5 @@ export default function ProductCardActions({
     </>
   );
 }
+
+export default ProductCardActions;

@@ -8,7 +8,7 @@ interface CategoryCard extends React.ComponentProps<"a"> {
   className?: string;
 }
 
-export default function CategoryCard({
+function CategoryCard({
   category,
   className,
   ...props
@@ -39,3 +39,5 @@ export default function CategoryCard({
     </Link>
   );
 }
+
+export default CategoryCard;

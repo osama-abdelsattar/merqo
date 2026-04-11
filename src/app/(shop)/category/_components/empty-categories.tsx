@@ -6,5 +6,5 @@ export default function EmptyCategories(
   props: React.ComponentProps<typeof Empty>,
 ) {
   const CTA: CTA = { text: "Browse products", href: "/products" };
-  return <EmptyCard title="categories" cta={CTA} {...props} />;
+  return <EmptyCard title="sub categories" cta={CTA} {...props} />;
 }

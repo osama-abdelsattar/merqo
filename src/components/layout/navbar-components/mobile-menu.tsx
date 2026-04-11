@@ -22,7 +22,12 @@ import {
   ItemContent,
   ItemTitle,
 } from "@/components/ui/item";
-import { ADDITIONAL_LINKS, NAV_LINKS } from "@/config/navigation.config";
+import {
+  ADDITIONAL_LINKS,
+  CATEGORY_LINKS,
+  NAV_LINKS,
+  USER_MENU_LINKS,
+} from "@/config/navigation.config";
 import {
   Collapsible,
   CollapsibleContent,
@@ -32,20 +37,26 @@ import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/layout/navbar-components/theme-toggle";
 import SearchField from "@/components/layout/navbar-components/search-field";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { Fragment } from "react";
 import LogOutAlertButton from "@/components/ui/logout-alert";
 import { useCart } from "@/hooks/use-cart";
 import { Badge } from "@/components/ui/badge";
-import { useCategories } from "@/hooks/use-categories";
 import { useWishlist } from "@/hooks/use-wishlist";
+import { Url } from "next/dist/shared/lib/router/router";
 
 export default function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
   const token = useSession();
-  const { cartData } = useCart();
+
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
-  const { data: CATEGORY_LINKS } = useCategories();
+  const { cartData } = useCart();
   const { data: wishlistData } = useWishlist();
+
+  const cartBadge = cartData?.numOfCartItems;
+  const wishlistBadge = wishlistData?.count;
+
+  const badge = (href: Url) =>
+    href === "/cart" ? cartBadge : href === "/wishlist" ? wishlistBadge : null;
   return (
     <Drawer {...props} open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <DrawerTrigger className="p-2.5 cursor-pointer hover:bg-accent transition-colors md:hidden rounded-full">
@@ -90,35 +101,34 @@ export default function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
                 })}
               </CollapsibleContent>
             </Collapsible>
-            {NAV_LINKS.concat(ADDITIONAL_LINKS).map((link, i) => {
-              const { label, href, Icon } = link;
-              return (
-                <Item key={i} className="border-border" asChild>
-                  <Link
-                    href={href}
-                    onClick={() => setIsDrawerOpen((prev) => !prev)}
-                  >
-                    <ItemContent>
-                      <ItemTitle className="w-full">
-                        {Icon && <Icon className="size-4.5" />} {label}
-                        {href === "/cart" &&
-                          cartData &&
-                          cartData.numOfCartItems > 0 && (
-                            <Badge className="ms-auto p-0 size-5 text-xs">
-                              {cartData.numOfCartItems}
-                            </Badge>
-                          )}
-                        {href === "/wishlist" && wishlistData?.count && wishlistData.count > 0 && (
-                          <Badge className="ms-auto p-0 size-5 text-xs variant-secondary">
-                            {wishlistData.count}
-                          </Badge>
-                        )}
-                      </ItemTitle>
-                    </ItemContent>
-                  </Link>
-                </Item>
-              );
-            })}
+            <Separator />
+            {NAV_LINKS.concat(ADDITIONAL_LINKS, USER_MENU_LINKS).map(
+              (link, i) => {
+                const { label, href, Icon } = link;
+                return (
+                  <Fragment key={label}>
+                    <Item className="border-border" asChild>
+                      <Link
+                        href={href}
+                        onClick={() => setIsDrawerOpen((prev) => !prev)}
+                      >
+                        <ItemContent>
+                          <ItemTitle className="w-full">
+                            {Icon && <Icon className="size-4.5" />} {label}
+                            {badge(link.href) && (
+                              <Badge className="ms-auto p-0 size-5 text-xs">
+                                {badge(link.href)}
+                              </Badge>
+                            )}
+                          </ItemTitle>
+                        </ItemContent>
+                      </Link>
+                    </Item>
+                    {i + 1 === NAV_LINKS.length && <Separator />}
+                  </Fragment>
+                );
+              },
+            )}
           </div>
         </ScrollArea>
         <DrawerFooter className="gap-4">

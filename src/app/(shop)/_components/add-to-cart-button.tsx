@@ -7,8 +7,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Cart } from "@/types/cart.type";
 import { Spinner } from "@/components/ui/spinner";
+import { useBreakpoint } from "@/hooks/use-breakpoint";
 
 export default function AddToCartButton({ productID }: { productID: string }) {
+  const isSm = useBreakpoint("sm");
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
@@ -24,8 +26,12 @@ export default function AddToCartButton({ productID }: { productID: string }) {
   });
 
   return (
-    <Button onClick={() => mutate(productID)} disabled={isPending}>
-      {isPending ? <Spinner /> : <PlusIcon />} Add To Cart
+    <Button
+      onClick={() => mutate(productID)}
+      size={isSm ? "icon-lg" : "default"}
+      disabled={isPending}
+    >
+      {isPending ? <Spinner /> : <PlusIcon />} {!isSm && "Add To Cart"}
     </Button>
   );
 }

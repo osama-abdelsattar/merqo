@@ -8,7 +8,7 @@ interface AuthFooterProps extends React.ComponentProps<typeof CardFooter> {
   type: "login" | "signup";
 }
 
-export default function AuthFooter({
+function AuthFooter({
   type,
   className,
   ...props
@@ -41,3 +41,5 @@ export default function AuthFooter({
     </CardFooter>
   );
 }
+
+export default AuthFooter;

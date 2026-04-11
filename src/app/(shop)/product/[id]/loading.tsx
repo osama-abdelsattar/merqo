@@ -1,5 +1,7 @@
 import ProductPageSkeleton from "@/app/(shop)/product/_components/skeleton/product-page-skeleton";
 
-export default function loading() {
+function loading() {
   return <ProductPageSkeleton />;
 }
+
+export default loading;

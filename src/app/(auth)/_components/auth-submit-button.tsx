@@ -12,7 +12,7 @@ interface AuthSubmitButtonProps extends Omit<
   isFormSubmitting: boolean;
 }
 
-export default function AuthSubmitButton({
+function AuthSubmitButton({
   type,
   className,
   isFormSubmitting,
@@ -41,3 +41,5 @@ export default function AuthSubmitButton({
     </Button>
   );
 }
+
+export default AuthSubmitButton;

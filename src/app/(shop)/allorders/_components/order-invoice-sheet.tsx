@@ -19,21 +19,19 @@ import {
   CreditCardIcon,
   TruckIcon,
   ReceiptIcon,
-  User2Icon,
-  PhoneIcon,
-  MailIcon,
   XIcon,
 } from "lucide-react";
 import type { Order } from "@/types/order.type";
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import CustomerInfo from "./customer-info";
 
 interface OrderInvoiceSheetProps extends React.ComponentProps<typeof Sheet> {
   order: Order;
   children?: React.ReactNode;
 }
 
-export function OrderInvoiceSheet({
+function OrderInvoiceSheet({
   order,
   children,
   ...props
@@ -89,20 +87,7 @@ export function OrderInvoiceSheet({
                 <h4 className="text-base font-serif border-b pb-1">
                   Billed To
                 </h4>
-                <div className="space-y-1">
-                  <p className="font-bold text-base flex items-center gap-2">
-                    <User2Icon className="size-4" />
-                    {order.user.name}
-                  </p>
-                  <p className="flex items-center gap-2 text-muted-foreground break-all">
-                    <MailIcon className="size-4" />
-                    {order.user.email}
-                  </p>
-                  <p className="flex items-center gap-2 text-muted-foreground">
-                    <PhoneIcon className="size-4" />
-                    {order.user.phone}
-                  </p>
-                </div>
+                <CustomerInfo className="space-y-1" customer={order.user} />
               </section>
 
               <section className="space-y-3">
@@ -208,3 +193,5 @@ export function OrderInvoiceSheet({
     </Sheet>
   );
 }
+
+export default OrderInvoiceSheet;

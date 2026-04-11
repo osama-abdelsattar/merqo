@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Card, CardAction, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Link from "next/link";
 import Rating from "@/components/ui/rating";
 import { Badge } from "@/components/ui/badge";
@@ -24,15 +30,15 @@ export default function AppProductMiniCard({
   const productID = id || _id;
 
   return (
-    <Card className="overflow-hidden border-none bg-card/50 backdrop-blur-sm transition-all hover:bg-card/80">
-      <div className="flex flex-col sm:flex-row items-center sm:ps-6">
-        <div className="w-full sm:w-42 aspect-square h-full shrink-0">
+    <Card className="overflow-hidden rounded-none sm:rounded-4xl">
+      <div className="flex flex-row items-center ps-6">
+        <div className="w-32 sm:w-42 sm:aspect-square shrink-0">
           <Image
             width={640}
             height={873}
             src={imageCover}
             alt={title}
-            className="w-full h-full object-cover sm:rounded-4xl"
+            className="w-full h-full object-cover rounded-4xl"
           />
         </div>
         <div className="w-full h-full flex flex-col justify-between gap-4">
@@ -55,7 +61,7 @@ export default function AppProductMiniCard({
             </div>
           </CardHeader>
           <CardFooter>
-            <div className="flex items-center justify-between w-full h-full">
+            <div className="flex items-center justify-between gap-4 w-full h-full">
               {actions}
             </div>
           </CardFooter>

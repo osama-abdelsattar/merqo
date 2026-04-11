@@ -14,16 +14,18 @@ async function getSpecificCategory(categoryId: string) {
     buildApiUrl(["categories", categoryId]),
   );
 
-  return data?.data;
+  return data?.data ?? null;
 }
 
 async function getSubCategories(categoryId: string) {
   const subCategories = await fetchApi<ApiResponse<SubCategory[]>>(
     buildApiUrl(["categories", categoryId, "subcategories"]),
   );
-  return subCategories?.data
-    ?.filter((subCategory) => subCategory.category === categoryId)
-    .reverse();
+  return (
+    subCategories?.data
+      ?.filter((subCategory) => subCategory.category === categoryId)
+      .reverse() ?? null
+  );
 }
 
 export { getTopCategories, getSpecificCategory, getSubCategories };

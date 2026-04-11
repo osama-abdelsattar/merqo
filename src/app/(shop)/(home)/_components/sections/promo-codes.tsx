@@ -3,7 +3,7 @@ import { SITE_INFO } from "@/config/site.config";
 import BannerCard from "@/app/(shop)/(home)/_components/cards/banner-card";
 import AnimatedSection from "@/components/ui/animated-section";
 
-export default function PromoCodes() {
+function PromoCodes() {
   return (
     <AnimatedSection
       aria-label="Promotional offers"
@@ -21,3 +21,5 @@ export default function PromoCodes() {
     </AnimatedSection>
   );
 }
+
+export default PromoCodes;

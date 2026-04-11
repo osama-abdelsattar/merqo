@@ -16,7 +16,7 @@ interface ProductCard extends React.ComponentProps<typeof Card> {
   product: Product;
 }
 
-export default function ProductCard({ product, ...props }: ProductCard) {
+function ProductCard({ product, ...props }: ProductCard) {
   const {
     category,
     _id,
@@ -61,3 +61,5 @@ export default function ProductCard({ product, ...props }: ProductCard) {
     </Card>
   );
 }
+
+export default ProductCard;

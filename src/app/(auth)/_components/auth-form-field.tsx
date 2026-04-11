@@ -11,7 +11,7 @@ interface AuthFormFieldProps extends React.ComponentProps<typeof FormItem> {
   autoComplete?: string;
 }
 
-export default function AuthFormField({
+function AuthFormField({
   name,
   ...props
 }: AuthFormFieldProps) {
@@ -19,3 +19,5 @@ export default function AuthFormField({
 
   return <AppFormField name={name as string} config={fieldConfig} {...props} />;
 }
+
+export default AuthFormField;

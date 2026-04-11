@@ -8,7 +8,7 @@ async function getAllProducts(params?: SearchParams, headers?: HeadersInit) {
     headers,
   );
 
-  return data;
+  return data ?? null;
 }
 
 async function getFeaturedProducts() {
@@ -16,7 +16,7 @@ async function getFeaturedProducts() {
     buildApiUrl(["products"], { limit: 15, sort: "-sold" }),
   );
 
-  return data?.data;
+  return data?.data ?? null;
 }
 
 async function getSpecificProduct(productId: string) {
@@ -24,7 +24,7 @@ async function getSpecificProduct(productId: string) {
     buildApiUrl(["products", productId]),
   );
 
-  return data?.data;
+  return data?.data ?? null;
 }
 
 export { getAllProducts, getFeaturedProducts, getSpecificProduct };
