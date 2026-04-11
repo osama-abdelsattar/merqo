@@ -17,23 +17,11 @@ import { getInitials } from "@/utils/text.util";
 import LogOutAlertButton from "@/components/ui/logout-alert";
 import { useSession } from "next-auth/react";
 import { Separator } from "@/components/ui/separator";
-import { useCart } from "@/hooks/use-cart";
-import { useWishlist } from "@/hooks/use-wishlist";
-import { Url } from "next/dist/shared/lib/router/router";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import Badge from "./badge";
 
 function UserMenu() {
   const token = useSession();
 
-  const { cartData } = useCart();
-  const { data: wishlistData } = useWishlist();
-
-  const cartBadge = cartData?.numOfCartItems;
-  const wishlistBadge = wishlistData?.count;
-
-  const badge = (href: Url) =>
-    href === "/cart" ? cartBadge : href === "/wishlist" ? wishlistBadge : null;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -55,20 +43,14 @@ function UserMenu() {
       <DropdownMenuContent className="flex flex-col gap-1" align="end">
         <DropdownMenuGroup>
           {USER_MENU_LINKS.map((link) => (
-            <DropdownMenuItem key={link.label} className="rounded-xl" asChild>
-              <Link
-                href={link.href}
-                className={cn(
-                  "focus-visible:ring-0 border-0",
-                  badge(link.href) && "flex items-center justify-between",
-                )}
-              >
+            <DropdownMenuItem
+              key={link.label}
+              className="rounded-xl focus-visible:ring-0 border-0"
+              asChild
+            >
+              <Link href={link.href} className="focus-visible:ring-0 border-0">
                 {link.Icon && <link.Icon />} {link.label}
-                {badge(link.href) && (
-                  <Badge className="ms-auto p-0 size-5 text-xs">
-                    {badge(link.href)}
-                  </Badge>
-                )}
+                <Badge href={link.href} />
               </Link>
             </DropdownMenuItem>
           ))}

@@ -30,8 +30,6 @@ const CATEGORY_LINKS: NavLink[] = categories?.map((category) => {
   };
 }) ?? [{ href: "/categories", label: "All categories" }];
 
-const ADDITIONAL_LINKS: NavLink[] = [];
-
 const AUTH_LINKS: NavLink[] = [
   {
     href: "/login",
@@ -65,13 +63,4 @@ const USER_MENU_LINKS: NavLink[] = [
   },
 ];
 
-const SECTION_LINKS: NavLink[] = NAV_LINKS.concat(ADDITIONAL_LINKS);
-
-export {
-  NAV_LINKS,
-  CATEGORY_LINKS,
-  ADDITIONAL_LINKS,
-  AUTH_LINKS,
-  USER_MENU_LINKS,
-  SECTION_LINKS,
-};
+export { NAV_LINKS, CATEGORY_LINKS, AUTH_LINKS, USER_MENU_LINKS };

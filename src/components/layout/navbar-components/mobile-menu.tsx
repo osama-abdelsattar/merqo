@@ -23,7 +23,6 @@ import {
   ItemTitle,
 } from "@/components/ui/item";
 import {
-  ADDITIONAL_LINKS,
   CATEGORY_LINKS,
   NAV_LINKS,
   USER_MENU_LINKS,
@@ -37,26 +36,14 @@ import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/layout/navbar-components/theme-toggle";
 import SearchField from "@/components/layout/navbar-components/search-field";
 import { useSession } from "next-auth/react";
-import React, { Fragment } from "react";
+import * as React from "react";
 import LogOutAlertButton from "@/components/ui/logout-alert";
-import { useCart } from "@/hooks/use-cart";
-import { Badge } from "@/components/ui/badge";
-import { useWishlist } from "@/hooks/use-wishlist";
-import { Url } from "next/dist/shared/lib/router/router";
+import Badge from "./badge";
 
 export default function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
   const token = useSession();
 
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-
-  const { cartData } = useCart();
-  const { data: wishlistData } = useWishlist();
-
-  const cartBadge = cartData?.numOfCartItems;
-  const wishlistBadge = wishlistData?.count;
-
-  const badge = (href: Url) =>
-    href === "/cart" ? cartBadge : href === "/wishlist" ? wishlistBadge : null;
   return (
     <Drawer {...props} open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <DrawerTrigger className="p-2.5 cursor-pointer hover:bg-accent transition-colors md:hidden rounded-full">
@@ -102,33 +89,27 @@ export default function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
               </CollapsibleContent>
             </Collapsible>
             <Separator />
-            {NAV_LINKS.concat(ADDITIONAL_LINKS, USER_MENU_LINKS).map(
-              (link, i) => {
-                const { label, href, Icon } = link;
-                return (
-                  <Fragment key={label}>
-                    <Item className="border-border" asChild>
-                      <Link
-                        href={href}
-                        onClick={() => setIsDrawerOpen((prev) => !prev)}
-                      >
-                        <ItemContent>
-                          <ItemTitle className="w-full">
-                            {Icon && <Icon className="size-4.5" />} {label}
-                            {badge(link.href) && (
-                              <Badge className="ms-auto p-0 size-5 text-xs">
-                                {badge(link.href)}
-                              </Badge>
-                            )}
-                          </ItemTitle>
-                        </ItemContent>
-                      </Link>
-                    </Item>
-                    {i + 1 === NAV_LINKS.length && <Separator />}
-                  </Fragment>
-                );
-              },
-            )}
+            {NAV_LINKS.concat(USER_MENU_LINKS).map((link, i) => {
+              const { label, href, Icon } = link;
+              return (
+                <React.Fragment key={label}>
+                  <Item className="border-border" asChild>
+                    <Link
+                      href={href}
+                      onClick={() => setIsDrawerOpen((prev) => !prev)}
+                    >
+                      <ItemContent>
+                        <ItemTitle className="w-full">
+                          {Icon && <Icon className="size-4.5" />} {label}
+                          <Badge href={href} />
+                        </ItemTitle>
+                      </ItemContent>
+                    </Link>
+                  </Item>
+                  {i + 1 === NAV_LINKS.length && <Separator />}
+                </React.Fragment>
+              );
+            })}
           </div>
         </ScrollArea>
         <DrawerFooter className="gap-4">

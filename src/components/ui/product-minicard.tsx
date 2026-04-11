@@ -24,7 +24,7 @@ export default function ProductMiniCard({
     onSuccess: (data) => {
       if (data) {
         toast.info(data.message);
-        queryClient.invalidateQueries({ queryKey: ["cart"] });
+        queryClient.invalidateQueries({ queryKey: ["cart", "wishlist"] });
       }
     },
     onError(error) {

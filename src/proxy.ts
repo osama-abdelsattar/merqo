@@ -16,5 +16,5 @@ export default async function proxy(req: NextRequest) {
 }
 
 export const config: MiddlewareConfig = {
-  matcher: ["/cart/:path*", "/wishlist/:path*"],
+  matcher: ["/cart/:path*", "/wishlist/:path*", "/orders/:path*"],
 };

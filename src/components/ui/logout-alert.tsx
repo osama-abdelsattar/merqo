@@ -27,7 +27,7 @@ export default function LogOutAlertButton({
 
   const handleLogOut = React.useCallback(async () => {
     await signOut({ redirect: false });
-    queryClient.invalidateQueries({ queryKey: ["cart"] });
+    queryClient.invalidateQueries({ queryKey: ["cart", "wishlist"] });
     toast.success("Logged out successfully, redirecting to login page");
     router.push("/login");
   }, [router, queryClient]);
