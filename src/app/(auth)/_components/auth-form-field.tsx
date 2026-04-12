@@ -1,7 +1,7 @@
 "use client";
 
 import { AUTH_FIELDS } from "@/config/auth-forms.config";
-import AppFormField from "@/components/ui/app-form-field";
+import AppFormField from "@/components/app-form-field";
 import { FormItem } from "@/components/ui/form";
 import React from "react";
 
@@ -11,10 +11,7 @@ interface AuthFormFieldProps extends React.ComponentProps<typeof FormItem> {
   autoComplete?: string;
 }
 
-function AuthFormField({
-  name,
-  ...props
-}: AuthFormFieldProps) {
+function AuthFormField({ name, ...props }: AuthFormFieldProps) {
   const fieldConfig = AUTH_FIELDS[name];
 
   return <AppFormField name={name as string} config={fieldConfig} {...props} />;

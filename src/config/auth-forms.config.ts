@@ -1,6 +1,6 @@
 import { AuthField } from "@/types/auth.type";
 
-export const AUTH_FIELDS: Record<string, AuthField> = {
+const AUTH_FIELDS: Record<string, AuthField> = {
   name: {
     label: "Full Name",
     placeholder: "Enter your full name",
@@ -32,3 +32,5 @@ export const AUTH_FIELDS: Record<string, AuthField> = {
     type: "password",
   },
 };
+
+export { AUTH_FIELDS };

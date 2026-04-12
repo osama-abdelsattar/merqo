@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function Section({
+function Section({
   children,
   className,
   ...props
@@ -11,3 +11,5 @@ export default function Section({
     </section>
   );
 }
+
+export default Section;

@@ -41,4 +41,4 @@ interface ProductBrand {
   image: string;
 }
 
-export type { Product };
+export type { Product, ProductCategory, ProductSubCategory, ProductBrand };

@@ -6,15 +6,17 @@ import {
 } from "next/server";
 
 export default async function proxy(req: NextRequest) {
-  const token = await getToken({ req });
-
-  if (token?.token) return NextResponse.next();
-
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === "production",
+  });
   const loginUrl = new URL("/login", req.nextUrl.origin);
 
-  return NextResponse.redirect(loginUrl);
+  if (token) return NextResponse.next();
+  else return NextResponse.redirect(loginUrl);
 }
 
 export const config: MiddlewareConfig = {
-  matcher: ["/cart/:path*", "/wishlist/:path*", "/orders/:path*"],
+  matcher: ["/cart/:path*", "/wishlist/:path*", "/allorders/:path*"],
 };

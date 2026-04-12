@@ -16,21 +16,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 
-export default function LogOutAlertButton({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function LogOutAlertButton({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const queryClient = useQueryClient();
 
-  const handleLogOut = React.useCallback(async () => {
-    await signOut({ redirect: false });
-    queryClient.invalidateQueries({ queryKey: ["cart", "wishlist"] });
-    toast.success("Logged out successfully, redirecting to login page");
-    router.push("/login");
-  }, [router, queryClient]);
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger
@@ -52,7 +42,18 @@ export default function LogOutAlertButton({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive" onClick={handleLogOut}>
+          <AlertDialogAction
+            variant="destructive"
+            onClick={async () => {
+              await signOut({ redirect: false });
+              toast.success(
+                "Logged out successfully, redirecting to login page",
+              );
+              router.refresh();
+              await queryClient.resetQueries();
+              router.push("/login");
+            }}
+          >
             Log out
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -60,3 +61,5 @@ export default function LogOutAlertButton({
     </AlertDialog>
   );
 }
+
+export default LogOutAlertButton;

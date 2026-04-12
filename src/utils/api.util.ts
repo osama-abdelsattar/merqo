@@ -19,6 +19,12 @@ interface ApiResponse<T> {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
+function getSiteBaseUrl() {
+  if (typeof window !== "undefined") return window.location.origin; // Browser
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // Vercel Server
+  return `http://localhost:3000`; // Local Dev
+}
+
 function buildApiUrl(
   endpoints?: string[],
   searchParams?: SearchParams,
@@ -86,6 +92,7 @@ async function fetchApi<T>(
 
 export {
   API_BASE_URL,
+  getSiteBaseUrl,
   buildApiUrl,
   fetchApi,
   type PaginationMetadata,

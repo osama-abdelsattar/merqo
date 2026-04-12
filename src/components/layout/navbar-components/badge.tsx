@@ -1,16 +1,15 @@
 "use client";
-
-import { useCart } from "@/hooks/use-cart";
-import { useWishlist } from "@/hooks/use-wishlist";
 import { Url } from "next/dist/shared/lib/router/router";
 import { Badge as ShadcnBadge } from "@/components/ui/badge";
+import { useCartContext } from "@/context/cart.context";
+import { useWishlistContext } from "@/context/wishlist.context";
 
 const Badge = ({ href }: { href: Url }) => {
-  const { cartData } = useCart();
-  const { data: wishlistData } = useWishlist();
+  const { cart } = useCartContext();
+  const { wishlist, wishlistData } = useWishlistContext();
 
-  const cartBadge = cartData?.numOfCartItems;
-  const wishlistBadge = wishlistData?.count;
+  const cartBadge = cart?.numOfCartItems ?? null;
+  const wishlistBadge = (wishlist?.data?.length || wishlistData?.count) ?? null;
 
   const badge =
     href === "/cart" ? cartBadge : href === "/wishlist" ? wishlistBadge : null;
@@ -18,7 +17,9 @@ const Badge = ({ href }: { href: Url }) => {
   if (!badge || badge < 1) return null;
 
   return (
-    <ShadcnBadge className="ms-auto p-0 size-5 text-xs">{badge}</ShadcnBadge>
+    <ShadcnBadge className="ms-auto p-0 size-5 text-xs text-primary-foreground!">
+      {badge}
+    </ShadcnBadge>
   );
 };
 

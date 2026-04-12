@@ -1,4 +1,4 @@
-export default function Logo(props: React.ComponentProps<"svg">) {
+function Logo(props: React.ComponentProps<"svg">) {
   return (
     <svg
       viewBox="0 0 4500 4500"
@@ -16,3 +16,5 @@ export default function Logo(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
+
+export default Logo;

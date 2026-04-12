@@ -1,4 +1,4 @@
-import CardLink from "@/components/ui/card-link";
+import CardLink from "@/components/card-link";
 import { cn } from "@/lib/utils";
 import { SubCategory } from "@/types/category.type";
 
@@ -6,7 +6,7 @@ interface SubCategoryCardProps extends React.ComponentProps<"a"> {
   subCategory: SubCategory;
 }
 
-export default function SubCategoryCard({
+function SubCategoryCard({
   subCategory,
   className,
   ...props
@@ -27,3 +27,5 @@ export default function SubCategoryCard({
     </CardLink>
   );
 }
+
+export default SubCategoryCard;

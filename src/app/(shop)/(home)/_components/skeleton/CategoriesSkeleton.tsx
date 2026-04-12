@@ -1,12 +1,8 @@
-import Section from "@/components/ui/section";
-import SectionHeader from "@/components/ui/section-header";
+import Section from "@/components/section";
+import SectionHeader from "@/components/section-header";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function CategoriesSkeleton({
-  title = "Top Categories",
-}: {
-  title?: string;
-}) {
+function CategoriesSkeleton({ title = "Top Categories" }: { title?: string }) {
   return (
     <Section>
       <SectionHeader>{title}</SectionHeader>
@@ -18,3 +14,5 @@ export default function CategoriesSkeleton({
     </Section>
   );
 }
+
+export default CategoriesSkeleton;

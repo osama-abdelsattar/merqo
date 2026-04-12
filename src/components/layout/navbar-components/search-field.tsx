@@ -4,7 +4,7 @@ import { ButtonGroup, buttonGroupVariants } from "@/components/ui/button-group";
 import { Input } from "@/components/ui/input";
 import { VariantProps } from "class-variance-authority";
 
-export default function SearchField(
+function SearchField(
   props: React.ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>,
 ) {
   return (
@@ -16,3 +16,5 @@ export default function SearchField(
     </ButtonGroup>
   );
 }
+
+export default SearchField;

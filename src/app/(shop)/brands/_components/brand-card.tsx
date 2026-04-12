@@ -1,4 +1,4 @@
-import CardLink from "@/components/ui/card-link";
+import CardLink from "@/components/card-link";
 import { cn } from "@/lib/utils";
 import { Brand } from "@/types/brand.type";
 import Image from "next/image";

@@ -76,6 +76,7 @@ const nextAuthConfig: NextAuthOptions = {
         try {
           const res = await axios.post<AuthResponse>(signUpUrl, credentials);
           const { user, token } = res.data;
+
           return { ...user, token, id: user.email };
         } catch (error) {
           if (axios.isAxiosError(error)) {
@@ -90,6 +91,7 @@ const nextAuthConfig: NextAuthOptions = {
   callbacks: {
     jwt(params) {
       if (params.user) params.token.token = params.user.token;
+
       return params.token;
     },
     session(params) {
@@ -98,7 +100,7 @@ const nextAuthConfig: NextAuthOptions = {
   },
 
   session: {
-    maxAge: 60 * 60 * 24 * 15,
+    maxAge: 60 * 60 * 24 * 7,
   },
 
   pages: {

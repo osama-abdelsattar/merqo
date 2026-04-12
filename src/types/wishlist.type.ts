@@ -1,9 +1,14 @@
-import { Product } from "@/types/product.type";
+import { Product } from "./product.type";
 
-interface WishlistResponse {
-  status: string;
+interface Wishlist {
+  status: "success" | string;
+  message: string;
+  data: string[];
+}
+interface WishlistData {
+  status: "success" | string;
   count: number;
   data: Product[];
 }
 
-export type { WishlistResponse };
+export type { Wishlist, WishlistData };

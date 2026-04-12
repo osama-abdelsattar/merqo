@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 /**
  * Resets window scroll whenever the route changes.
  */
-export default function ScrollToTop() {
+function ScrollToTop() {
   const pathname = usePathname();
   const skipNextScrollRef = useRef(false);
 
@@ -34,3 +34,5 @@ export default function ScrollToTop() {
 
   return null;
 }
+
+export default ScrollToTop;

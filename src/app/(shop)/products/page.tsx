@@ -1,5 +1,5 @@
-import AnimatedSection from "@/components/ui/animated-section";
-import SectionHeader from "@/components/ui/section-header";
+import AnimatedSection from "@/components/animated-section";
+import SectionHeader from "@/components/section-header";
 import { getAllProducts } from "@/services/product.service";
 import ProductCard from "@/app/(shop)/(home)/_components/cards/product-card";
 import EmptyProducts from "@/app/(shop)/(home)/_components/cards/empty-products";

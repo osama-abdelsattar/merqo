@@ -11,11 +11,7 @@ interface ToggleButtonProps extends React.ComponentProps<typeof Toggle> {
   tooltipText: string;
 }
 
-export default function ToggleButton({
-  children,
-  tooltipText,
-  ...props
-}: ToggleButtonProps) {
+function ToggleButton({ children, tooltipText, ...props }: ToggleButtonProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -25,3 +21,5 @@ export default function ToggleButton({
     </Tooltip>
   );
 }
+
+export default ToggleButton;

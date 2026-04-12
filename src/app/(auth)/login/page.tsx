@@ -45,8 +45,9 @@ function LoginPage() {
       toast.success("Logged in successfully!", {
         richColors: true,
       });
-      queryClient.invalidateQueries({ queryKey: ["cart", "wishlist"] });
+      await queryClient.resetQueries();
       router.push("/");
+      router.refresh();
     }
   }
 

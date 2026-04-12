@@ -9,7 +9,7 @@ interface RatingProps extends React.ComponentProps<"div"> {
   showReviews?: boolean;
 }
 
-export default function Rating({
+function Rating({
   rating,
   reviewersCount = null,
   showText = true,
@@ -39,3 +39,5 @@ export default function Rating({
     </div>
   );
 }
+
+export default Rating;

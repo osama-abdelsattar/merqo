@@ -23,7 +23,7 @@ interface ProductImageProps {
   alt: string;
 }
 
-export default function ProductImage({ images, alt }: ProductImageProps) {
+function ProductImage({ images, alt }: ProductImageProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   const displayImages =
@@ -121,3 +121,5 @@ export default function ProductImage({ images, alt }: ProductImageProps) {
     </div>
   );
 }
+
+export default ProductImage;

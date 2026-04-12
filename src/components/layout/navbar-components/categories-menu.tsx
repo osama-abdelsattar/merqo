@@ -9,7 +9,7 @@ import {
 import { CATEGORY_LINKS } from "@/config/navigation.config";
 import Link from "next/link";
 
-export default function CategoriesMenu() {
+function CategoriesMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -39,3 +39,5 @@ export default function CategoriesMenu() {
     </DropdownMenu>
   );
 }
+
+export default CategoriesMenu;

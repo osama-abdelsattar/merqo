@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { SITE_INFO } from "@/config/site.config";
 import WishlistButton from "@/app/(shop)/_components/wishlist-button";
 
-export default function ProductPageSkeleton() {
+function ProductPageSkeleton() {
   return (
     <div className="-mx-6 sm:py-6 max-w-7xl sm:mx-auto min-h-[calc(100vh-5rem)] flex flex-col gap-4">
       <div className="grow flex justify-center items-center">
@@ -71,3 +71,5 @@ export default function ProductPageSkeleton() {
     </div>
   );
 }
+
+export default ProductPageSkeleton;

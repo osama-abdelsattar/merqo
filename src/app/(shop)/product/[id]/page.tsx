@@ -3,13 +3,9 @@ import { getSpecificProduct } from "@/services/product.service";
 import ProductBreadcrumbs from "@/app/(shop)/product/_components/product-breadcrumbs";
 import ProductImage from "@/app/(shop)/product/_components/product-image";
 import ProductInfoCard from "@/app/(shop)/product/_components/product-info-card";
-import AnimatedSection from "@/components/ui/animated-section";
+import AnimatedSection from "@/components/animated-section";
 
-async function ProductPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: productId } = await params;
   const product = await getSpecificProduct(productId);
 

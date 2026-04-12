@@ -3,13 +3,13 @@
 import { buildApiUrl, fetchApi } from "@/utils/api.util";
 import { getServerToken } from "@/utils/token.util";
 import axios from "axios";
-import { WishlistResponse } from "@/types/wishlist.type";
+import { Wishlist, WishlistData } from "@/types/wishlist.type";
 
-export async function getWishlistData() {
+async function getWishlistData() {
   const token = await getServerToken();
   if (!token) return null;
 
-  const data = await fetchApi<WishlistResponse>(
+  const data = await fetchApi<WishlistData>(
     buildApiUrl(["wishlist"]),
     { token },
     { cache: "no-store" },
@@ -18,12 +18,12 @@ export async function getWishlistData() {
   return data;
 }
 
-export async function addToWishlist(productId: string) {
+async function addToWishlist(productId: string) {
   const token = await getServerToken();
   if (!token) throw new Error("Unauthorized");
 
   try {
-    const res = await axios.post(
+    const res = await axios.post<Wishlist>(
       buildApiUrl(["wishlist"]),
       { productId },
       { headers: { token } },
@@ -39,14 +39,17 @@ export async function addToWishlist(productId: string) {
   }
 }
 
-export async function removeFromWishlist(productId: string) {
+async function removeFromWishlist(productId: string) {
   const token = await getServerToken();
   if (!token) throw new Error("Unauthorized");
 
   try {
-    const res = await axios.delete(buildApiUrl(["wishlist", productId]), {
-      headers: { token },
-    });
+    const res = await axios.delete<Wishlist>(
+      buildApiUrl(["wishlist", productId]),
+      {
+        headers: { token },
+      },
+    );
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -57,3 +60,5 @@ export async function removeFromWishlist(productId: string) {
     throw new Error("Failed to remove from wishlist");
   }
 }
+
+export { getWishlistData, addToWishlist, removeFromWishlist };

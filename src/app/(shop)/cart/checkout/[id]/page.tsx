@@ -1,10 +1,10 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { createOrder } from "@/actions/order.action";
 import { toast } from "sonner";
-import AnimatedSection from "@/components/ui/animated-section";
-import SectionHeader from "@/components/ui/section-header";
+import AnimatedSection from "@/components/animated-section";
+import SectionHeader from "@/components/section-header";
 import {
   Card,
   CardContent,
@@ -14,9 +14,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon, InfoIcon } from "lucide-react";
+import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Form,
   FormControl,
@@ -34,16 +33,15 @@ import { Spinner } from "@/components/ui/spinner";
 import { Separator } from "@/components/ui/separator";
 
 import { RadioGroup } from "@/components/ui/radio-group";
-import AppFormField from "@/components/ui/app-form-field";
+import AppFormField from "@/components/app-form-field";
 import { CHECKOUT_FIELDS } from "@/config/checkout-form.config";
 import PaymentRadioItem from "@/app/(shop)/cart/checkout/_components/payment-radio-item";
 import { useRouter } from "next/navigation";
+import { CheckoutApiResponse, CheckoutApiSession } from "@/types/checkout.type";
+import ShippingDataAlert from "../_components/shipping-data-alert";
+import { useCartContext } from "@/context/cart.context";
 
-export default function Checkout({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+function Checkout({ params }: { params: Promise<{ id: string }> }) {
   const form = useForm<ShippingValues>({
     defaultValues: {
       details: "",
@@ -57,10 +55,13 @@ export default function Checkout({
 
   const router = useRouter();
 
-  const queryClient = useQueryClient();
+  const { setCart } = useCartContext();
+
   const { mutate: order, isPending: isOrderPending } = useMutation({
     mutationFn: async (data: ShippingValues) => {
-      const orderInfo = {};
+      const orderInfoArr = Object.entries(data).slice(1);
+      const orderInfo = Object.fromEntries(orderInfoArr);
+
       const pageParams = await params;
       const cartID = pageParams.id;
 
@@ -68,15 +69,19 @@ export default function Checkout({
 
       return res;
     },
-    onSuccess: (res, data) => {
-      if (data.type === "Cash") {
-        toast.info(res.message);
-        queryClient.invalidateQueries({ queryKey: ["cart"] });
-        router.push("/allorders");
-      }
+    onSuccess: (data, vars) => {
+      if (data) {
+        if (vars.type === "Cash") {
+          const response = data as CheckoutApiResponse;
+          toast.info(response.message);
+          setCart(null);
+          router.push("/allorders");
+        }
 
-      if (data.type === "Visa") {
-        window.open(res.session.url, "_self");
+        if (vars.type === "Visa") {
+          const session = data as CheckoutApiSession;
+          window.open(session.session.url, "_self");
+        }
       }
     },
     onError(error) {
@@ -101,18 +106,7 @@ export default function Checkout({
                 className="flex flex-col gap-4"
               >
                 <CardContent className="flex flex-col gap-4">
-                  <Alert>
-                    <div className="flex items-center gap-4">
-                      <InfoIcon />
-                      <div className="">
-                        <AlertTitle>Delivery Information</AlertTitle>
-                        <AlertDescription>
-                          Please ensure your address is accurate for smooth
-                          delivery
-                        </AlertDescription>
-                      </div>
-                    </div>
-                  </Alert>
+                  <ShippingDataAlert />
                   {Object.entries(CHECKOUT_FIELDS).map(
                     ([inputName, inputData]) => (
                       <AppFormField
@@ -166,7 +160,7 @@ export default function Checkout({
             </Form>
           </Card>
           <Button variant="outline" size="lg" className="me-auto" asChild>
-            <Link href="/">
+            <Link href="/cart">
               <ArrowLeftIcon /> Back to cart
             </Link>
           </Button>
@@ -175,3 +169,5 @@ export default function Checkout({
     </AnimatedSection>
   );
 }
+
+export default Checkout;

@@ -1,10 +1,10 @@
 "use client";
 
-import EmptyCard from "@/components/ui/empty-card";
+import EmptyCard from "@/components/empty-card";
 import { useOrders } from "@/hooks/use-orders";
 import OrderCard from "@/app/(shop)/allorders/_components/order-card";
-import AnimatedSection from "@/components/ui/animated-section";
-import SectionHeader from "@/components/ui/section-header";
+import AnimatedSection from "@/components/animated-section";
+import SectionHeader from "@/components/section-header";
 import OrdersSkeleton from "./_components/orders-skeleton";
 
 function Orders() {
@@ -14,7 +14,7 @@ function Orders() {
 
   if (!orders)
     return (
-      <section className="min-h-[calc(100dvh-5rem) flex items-center justify-center]">
+      <section className="min-h-[calc(100dvh-5rem)] flex items-center justify-center]">
         <EmptyCard
           title="orders"
           cta={{ text: "Products", href: "/products" }}

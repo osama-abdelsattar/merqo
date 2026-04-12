@@ -7,7 +7,7 @@ import {
 import "@/app/globals.css";
 import { cn } from "@/lib/utils";
 import { SITE_INFO } from "@/config/site.config";
-import AppProviders from "@/components/providers/app-providers";
+import AppProviders from "@/providers/app-providers";
 
 // CSS
 import "@/styles/section-header.css";

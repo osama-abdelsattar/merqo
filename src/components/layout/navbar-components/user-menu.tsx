@@ -1,8 +1,6 @@
 "use client";
 
 import { AUTH_LINKS, USER_MENU_LINKS } from "@/config/navigation.config";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LogOutIcon, User2Icon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,17 +8,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-import { getInitials } from "@/utils/text.util";
-import LogOutAlertButton from "@/components/ui/logout-alert";
 import { useSession } from "next-auth/react";
-import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { User2Icon } from "lucide-react";
+import { getInitials } from "@/utils/text.util";
+import AuthenticatedMenuItems from "./_components/authenticated-menu-items";
+import UnauthenticatedMenuItems from "./_components/unauthenticated-menu-items";
+import Link from "next/link";
 import Badge from "./badge";
+import { Separator } from "@/components/ui/separator";
 
 function UserMenu() {
-  const token = useSession();
+  const { data: session } = useSession();
 
   return (
     <DropdownMenu>
@@ -28,11 +29,11 @@ function UserMenu() {
         <Button size="icon-lg" className="rounded-full">
           <Avatar size="lg">
             <AvatarImage className="relative">
-              <Image fill src={token?.data?.user?.image ?? ""} alt="" />
+              <Image fill src={session?.user?.image ?? ""} alt="" />
             </AvatarImage>
             <AvatarFallback>
-              {token?.data?.user?.name ? (
-                getInitials(token.data.user.name)
+              {session?.user?.name ? (
+                getInitials(session.user.name)
               ) : (
                 <User2Icon className="size-5" />
               )}
@@ -57,34 +58,10 @@ function UserMenu() {
         </DropdownMenuGroup>
         <Separator />
         <DropdownMenuGroup>
-          {token && token.status === "authenticated" ? (
-            <LogOutAlertButton>
-              <DropdownMenuItem
-                className="rounded-xl focus-visible:ring-0 border-0"
-                variant="destructive"
-              >
-                <LogOutIcon /> Log out
-              </DropdownMenuItem>
-            </LogOutAlertButton>
+          {session ? (
+            <AuthenticatedMenuItems />
           ) : (
-            AUTH_LINKS.map((link) => {
-              const { href, label, Icon } = link;
-              return (
-                <DropdownMenuItem
-                  key={href + label}
-                  className="rounded-xl focus-visible:ring-0 border-0"
-                  asChild
-                >
-                  <Link
-                    href={href}
-                    className="text-foreground/60 hover:text-foreground transition-[color] cursor-pointer"
-                  >
-                    <span>{Icon && <Icon />}</span>
-                    <span>{label}</span>
-                  </Link>
-                </DropdownMenuItem>
-              );
-            })
+            <UnauthenticatedMenuItems authLinks={AUTH_LINKS} />
           )}
         </DropdownMenuGroup>
       </DropdownMenuContent>

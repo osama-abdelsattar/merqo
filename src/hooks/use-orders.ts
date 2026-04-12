@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getOrdersData, getUserID } from "@/actions/order.action";
 
-export const useOrders = () => {
+function useOrders() {
   return useQuery({
     queryKey: ["Orders"],
     queryFn: async () => {
@@ -16,4 +16,6 @@ export const useOrders = () => {
     },
     staleTime: 1000 * 60 * 5,
   });
-};
+}
+
+export { useOrders };

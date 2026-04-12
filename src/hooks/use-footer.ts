@@ -1,9 +1,11 @@
+"use client";
+
 import { NAV_LINKS, CATEGORY_LINKS } from "@/config/navigation.config";
 import { FOOTER_STRUCTURE } from "@/config/footer.config";
 import { NavLink } from "@/types/navigation.type";
 import { FooterSection } from "@/types/footer.type";
 
-const useFooter = () => {
+function useFooter() {
   const exploreLinks: NavLink[] = [
     ...NAV_LINKS,
     { label: "Categories", href: "/categories" },
@@ -21,6 +23,6 @@ const useFooter = () => {
   ];
 
   return { footerSections };
-};
+}
 
 export { useFooter };

@@ -1,5 +1,5 @@
-import AnimatedSection from "@/components/ui/animated-section";
-import SectionHeader from "@/components/ui/section-header";
+import AnimatedSection from "@/components/animated-section";
+import SectionHeader from "@/components/section-header";
 import { getSubCategories } from "@/services/category.service";
 import SubCategoryCard from "@/app/(shop)/category/_components/subcategory-card";
 import EmptyCategories from "@/app/(shop)/category/_components/empty-categories";

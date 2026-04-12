@@ -8,7 +8,7 @@ import {
 import { Product } from "@/types/product.type";
 import Image from "next/image";
 import Link from "next/link";
-import Rating from "@/components/ui/rating";
+import Rating from "@/components/rating";
 import ProductCardActions from "@/app/(shop)/(home)/_components/cards/product-card-actions";
 import AddToCartButton from "@/app/(shop)/_components/add-to-cart-button";
 

@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const shippingSchema = z.object({
+const shippingSchema = z.object({
   type: z.enum(["Cash", "Visa"]),
   city: z.string("Please enter a valid city name.").min(3),
   details: z.string("Please enter a valid address.").min(12),
@@ -12,4 +12,6 @@ export const shippingSchema = z.object({
     ),
 });
 
-export type ShippingValues = z.infer<typeof shippingSchema>;
+type ShippingValues = z.infer<typeof shippingSchema>;
+
+export { shippingSchema, type ShippingValues };

@@ -1,9 +1,9 @@
-import AnimatedSection from "@/components/ui/animated-section";
+import AnimatedSection from "@/components/animated-section";
 import CategoryCard from "@/app/(shop)/(home)/_components/cards/category-card";
-import SectionHeader from "@/components/ui/section-header";
+import SectionHeader from "@/components/section-header";
 import { getTopCategories } from "@/services/category.service";
 import EmptyCategories from "@/app/(shop)/category/_components/empty-categories";
-import Section from "@/components/ui/section";
+import Section from "@/components/section";
 
 async function TopCategories() {
   const categories = (await getTopCategories())?.toReversed();

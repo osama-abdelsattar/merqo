@@ -9,20 +9,24 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import Rating from "@/components/ui/rating";
+import Rating from "@/components/rating";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types/product.type";
+import { cn } from "@/lib/utils";
+import { CartProduct } from "@/types/cart.type";
 
-interface AppProductMiniCardProps {
-  product: Product;
+interface AppProductMiniCardProps extends React.ComponentProps<typeof Card> {
+  product: Product | CartProduct;
   topAction?: React.ReactNode;
   actions?: React.ReactNode;
 }
 
-export default function AppProductMiniCard({
+function AppProductMiniCard({
   product,
   topAction,
   actions,
+  className,
+  ...props
 }: AppProductMiniCardProps) {
   const { imageCover, _id, id, title, category, brand, ratingsAverage } =
     product;
@@ -30,7 +34,10 @@ export default function AppProductMiniCard({
   const productID = id || _id;
 
   return (
-    <Card className="overflow-hidden rounded-none sm:rounded-4xl">
+    <Card
+      className={cn("overflow-hidden rounded-none sm:rounded-4xl", className)}
+      {...props}
+    >
       <div className="flex flex-row items-center ps-6">
         <div className="w-32 sm:w-42 sm:aspect-square shrink-0">
           <Image
@@ -60,13 +67,11 @@ export default function AppProductMiniCard({
               <Badge variant="secondary">{brand.name}</Badge>
             </div>
           </CardHeader>
-          <CardFooter>
-            <div className="flex items-center justify-between gap-4 w-full h-full">
-              {actions}
-            </div>
-          </CardFooter>
+          <CardFooter>{actions}</CardFooter>
         </div>
       </div>
     </Card>
   );
 }
+
+export default AppProductMiniCard;

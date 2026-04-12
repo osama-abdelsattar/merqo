@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 
-export default function ProductPrice({
+function ProductPrice({
   price,
   priceAfterDiscount,
   quantity,
@@ -21,11 +21,7 @@ export default function ProductPrice({
               {price}£
             </span>
             <Badge variant="outline">
-              Save{" "}
-              {Math.round(
-                ((price - priceAfterDiscount) / price) * 100,
-              )}
-              %
+              Save {Math.round(((price - priceAfterDiscount) / price) * 100)}%
             </Badge>
           </>
         )}
@@ -43,3 +39,5 @@ export default function ProductPrice({
     </div>
   );
 }
+
+export default ProductPrice;

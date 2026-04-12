@@ -6,10 +6,7 @@ interface CustomerInfoProps extends React.ComponentProps<"div"> {
   customer: Order["user"];
 }
 
-export default function CustomerInfo({
-  customer,
-  ...props
-}: CustomerInfoProps) {
+function CustomerInfo({ customer, ...props }: CustomerInfoProps) {
   return (
     <div {...props}>
       <p className="font-bold text-base flex items-center gap-2">
@@ -25,3 +22,5 @@ export default function CustomerInfo({
     </div>
   );
 }
+
+export default CustomerInfo;

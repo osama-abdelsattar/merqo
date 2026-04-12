@@ -1,6 +1,6 @@
-import AnimatedSection from "@/components/ui/animated-section";
-import EmptyCard from "@/components/ui/empty-card";
-import SectionHeader from "@/components/ui/section-header";
+import AnimatedSection from "@/components/animated-section";
+import EmptyCard from "@/components/empty-card";
+import SectionHeader from "@/components/section-header";
 import { getAllBrands } from "@/services/brand.service";
 import { CTA } from "@/types/hero-slide.type";
 import BrandCard from "./_components/brand-card";

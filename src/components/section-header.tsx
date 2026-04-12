@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function SectionHeader({
+function SectionHeader({
   className,
   ...props
 }: React.ComponentProps<"header">) {
@@ -10,3 +10,5 @@ export default function SectionHeader({
     </header>
   );
 }
+
+export default SectionHeader;

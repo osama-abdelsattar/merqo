@@ -2,8 +2,8 @@ import { getFeaturedProducts } from "@/services/product.service";
 import EmptyProducts from "@/app/(shop)/(home)/_components/cards/empty-products";
 import ViewMoreCard from "@/app/(shop)/(home)/_components/cards/view-more-card";
 import ProductCard from "@/app/(shop)/(home)/_components/cards/product-card";
-import AnimatedSection from "@/components/ui/animated-section";
-import SectionHeader from "@/components/ui/section-header";
+import AnimatedSection from "@/components/animated-section";
+import SectionHeader from "@/components/section-header";
 
 async function FeaturedProducts() {
   const productList = await getFeaturedProducts();

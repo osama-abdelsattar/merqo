@@ -46,7 +46,8 @@ function SignupPage() {
       toast.success("Account created successfully!", {
         richColors: true,
       });
-      queryClient.invalidateQueries({ queryKey: ["cart", "wishlist"] });
+      router.refresh();
+      await queryClient.resetQueries();
       router.push("/");
     }
   }

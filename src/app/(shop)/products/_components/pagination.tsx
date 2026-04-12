@@ -8,11 +8,7 @@ import {
 } from "@/components/ui/pagination";
 import { PaginationMetadata } from "@/utils/api.util";
 
-export default function Pagination({
-  metadata,
-}: {
-  metadata: PaginationMetadata;
-}) {
+function Pagination({ metadata }: { metadata: PaginationMetadata }) {
   const { numberOfPages, currentPage, nextPage, prevPage } = metadata;
 
   const getHref = (page: number | undefined | null) => {
@@ -53,3 +49,5 @@ export default function Pagination({
     </ShadcnPagination>
   );
 }
+
+export default Pagination;

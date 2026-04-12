@@ -1,12 +1,8 @@
-import Section from "@/components/ui/section";
-import SectionHeader from "@/components/ui/section-header";
+import Section from "@/components/section";
+import SectionHeader from "@/components/section-header";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function ProductsSkeleton({
-  title = "Featured Products",
-}: {
-  title?: string;
-}) {
+function ProductsSkeleton({ title = "Featured Products" }: { title?: string }) {
   return (
     <Section>
       <SectionHeader>{title}</SectionHeader>
@@ -18,3 +14,5 @@ export default function ProductsSkeleton({
     </Section>
   );
 }
+
+export default ProductsSkeleton;

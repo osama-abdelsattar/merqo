@@ -1,17 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface ToggleButtonProps extends React.ComponentProps<typeof Button> {
   tooltipText: string;
 }
 
-export default function TooltipButton({
-  children,
-  tooltipText,
-  ...props
-}: ToggleButtonProps) {
+function TooltipButton({ children, tooltipText, ...props }: ToggleButtonProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -21,3 +21,5 @@ export default function TooltipButton({
     </Tooltip>
   );
 }
+
+export default TooltipButton;

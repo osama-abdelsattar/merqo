@@ -3,7 +3,7 @@ import { fadeInUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { motion, type MotionProps } from "framer-motion";
 
-export default function AnimatedSection({
+function AnimatedSection({
   children,
   className,
   ...props
@@ -19,3 +19,5 @@ export default function AnimatedSection({
     </motion.section>
   );
 }
+
+export default AnimatedSection;

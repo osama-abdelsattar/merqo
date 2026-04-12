@@ -7,7 +7,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import RefreshButton from "@/components/ui/refresh-button";
+import RefreshButton from "@/components/refresh-button";
 import { cn } from "@/lib/utils";
 import { CTA } from "@/types/hero-slide.type";
 import { BadgeXIcon, Globe } from "lucide-react";
@@ -21,12 +21,7 @@ interface EmptyCardProps extends Omit<
   cta?: CTA;
 }
 
-export default function EmptyCard({
-  className,
-  title,
-  cta,
-  ...props
-}: EmptyCardProps) {
+function EmptyCard({ className, title, cta, ...props }: EmptyCardProps) {
   return (
     <Empty
       className={cn("border rounded-4xl max-w-3xl mx-auto gap-6", className)}
@@ -39,7 +34,7 @@ export default function EmptyCard({
         <EmptyTitle>No {title} found at this page</EmptyTitle>
         <EmptyDescription>
           We couldn&apos;t find any {title} at the moment. Please try again
-          later or browse our categories.
+          later.
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row justify-center gap-2">
@@ -56,3 +51,5 @@ export default function EmptyCard({
     </Empty>
   );
 }
+
+export default EmptyCard;

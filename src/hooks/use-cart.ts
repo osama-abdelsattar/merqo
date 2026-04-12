@@ -1,23 +1,18 @@
 "use client";
 
-import { getCartData as fetchCart } from "@/actions/cart.action";
+import { getCartData } from "@/actions/cart.action";
 import { Cart } from "@/types/cart.type";
 import { useQuery } from "@tanstack/react-query";
 
 function useCart() {
-  const {
-    data: cartData = null,
-    isLoading,
-    error,
-  } = useQuery<Cart | null>({
+  return useQuery<Cart | null>({
     queryKey: ["cart"],
     queryFn: async () => {
-      const data = await fetchCart();
+      const data = await getCartData();
+
       return data;
     },
   });
-
-  return { cartData, isLoading, error };
 }
 
 export { useCart };

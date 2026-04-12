@@ -1,34 +1,27 @@
+import {
+  ProductBrand,
+  ProductCategory,
+  ProductSubCategory,
+} from "./product.type";
+
 interface CartItem {
   _id: string;
   count: number;
   price?: number;
-  product: {
-    subcategory: {
-      _id: string;
-      name: string;
-      slug: string;
-      category: string;
-    }[];
-    _id: string;
-    title: string;
-    slug: string;
-    quantity: number;
-    imageCover: string;
-    category: {
-      _id: string;
-      name: string;
-      slug: string;
-      image: string;
-    };
-    brand: {
-      _id: string;
-      name: string;
-      slug: string;
-      image: string;
-    };
-    ratingsAverage: number;
-    id: string;
-  };
+  product: CartProduct;
+}
+
+interface CartProduct {
+  id: string;
+  _id: string;
+  title: string;
+  slug: string;
+  quantity: number;
+  imageCover: string;
+  category: ProductCategory;
+  subcategory: ProductSubCategory[];
+  brand: ProductBrand;
+  ratingsAverage: number;
 }
 
 interface Cart {
@@ -47,4 +40,4 @@ interface Cart {
   };
 }
 
-export type { Cart, CartItem };
+export type { Cart, CartItem, CartProduct };

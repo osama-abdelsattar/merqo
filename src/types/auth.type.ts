@@ -1,6 +1,8 @@
-export interface AuthField {
+interface AuthField {
   label: string;
   placeholder: string;
   autoComplete: string;
   type: "text" | "password" | "tel" | "email";
 }
+
+export type { AuthField };

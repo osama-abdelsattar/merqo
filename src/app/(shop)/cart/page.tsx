@@ -1,108 +1,56 @@
 "use client";
+import * as React from "react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import ProductMiniCard from "@/components/ui/product-minicard";
-import { Separator } from "@/components/ui/separator";
-import { useCart } from "@/hooks/use-cart";
-import { ArrowLeftIcon, ShoppingCartIcon, TagIcon, XIcon } from "lucide-react";
-import Link from "next/link";
+import CartProductCard from "./_components/cart-product-card";
 import ProductListLayout from "@/components/layout/product-list-layout";
-import DeleteAlertButton from "@/components/ui/delete-alert";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
+import { useToastMutation } from "@/hooks/use-toast-mutation";
 import { clearCart } from "@/actions/cart.action";
+import { useCartContext } from "@/context/cart.context";
+import CartSummaryCard from "./_components/cart-summary-card";
+import CartFooterActions from "./_components/cart-footer-actions";
+import CartSkeleton from "./_components/cart-skeleton";
 
 function CartPage() {
-  const { cartData, isLoading } = useCart();
-  const totalPrice = cartData?.data.totalCartPrice.toLocaleString("en-EG");
-
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: clearCart,
-    onSuccess: (data) => {
-      if (data) {
-        toast.info(data.message);
-        queryClient.invalidateQueries({ queryKey: ["cart"] });
-      }
+  React.useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ["cart"] });
+  }, [queryClient]);
+
+  const { cart, setCart, isLoading } = useCartContext();
+
+  const { mutate, isPending } = useToastMutation({
+    mutationFn: async () => {
+      const res = await clearCart();
+      if (!res) throw new Error("Failed to clear cart");
+      return res;
     },
-    onError(error) {
-      toast.error(error.message);
-    },
+    successMessage: (data) => data?.message || "Cart cleared",
+    errorMessage: (error) => error.message,
+    onSuccessWithToast: (data) => setCart(data),
   });
   return (
     <ProductListLayout
       title="Cart"
-      isEmpty={!cartData || cartData.numOfCartItems === 0}
+      isEmpty={!cart || cart.numOfCartItems === 0}
       isLoading={isLoading}
+      Skeleton={CartSkeleton}
       emptyState={{
-        title: "Products",
-        cta: { href: "login", text: "Login" },
+        title: "products",
+        cta: { href: "/products", text: "Start Shopping" },
       }}
-      listFooter={
-        <div className="flex flex-col sm:flex-row gap-2 items-center sm:justify-between">
-          <Button variant="outline" size="lg" asChild>
-            <Link href="/">
-              <ArrowLeftIcon /> Continue shopping
-            </Link>
-          </Button>
-          <DeleteAlertButton mutate={mutate}>
-            <Button variant="ghost" size="lg">
-              <XIcon /> Clear Cart
-            </Button>
-          </DeleteAlertButton>
-        </div>
-      }
-      sidebar={
-        <Card className="rounded-none sm:rounded-4xl">
-          <CardHeader>
-            <CardTitle>
-              <h3 className="text-xl font-bold font-serif">Order Summary</h3>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-1 *:flex *:justify-between *:items-center [&_h4]:text-muted-foreground [&_h4]:font-medium">
-              <div>
-                <h4>Subtotal ({cartData?.numOfCartItems} items)</h4>
-                <span>{totalPrice}£</span>
-              </div>
-              <div>
-                <h4>Shipping</h4>
-                <span className="text-chart-2 dark:text-chart-1">FREE</span>
-              </div>
-            </div>
-          </CardContent>
-          <Separator />
-          <CardFooter className="flex-col items-stretch gap-4">
-            <div className="flex justify-between items-center grow">
-              <h4 className="font-semibold text-base">Estimated Total</h4>
-              <span>{totalPrice}£</span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <Button size="lg" variant="secondary">
-                <TagIcon />
-                Apply Coupon
-              </Button>
-              <Button size="lg" asChild>
-                <Link href={`/cart/checkout/${cartData?.cartId}`}>
-                  <ShoppingCartIcon />
-                  Order
-                </Link>
-              </Button>
-            </div>
-          </CardFooter>
-        </Card>
-      }
     >
-      {cartData?.data.products.map((product) => (
-        <ProductMiniCard key={product._id} product={product} />
-      ))}
+      <div className="col-span-full lg:col-span-8 space-y-4">
+        {cart?.data.products.map((product) => (
+          <CartProductCard key={product._id} product={product.product} />
+        ))}
+        <div className="flex flex-col sm:flex-row gap-2 items-center sm:justify-between">
+          <CartFooterActions mutate={mutate} isPending={isPending} />
+        </div>
+      </div>
+      <div className="col-span-full lg:col-span-4">
+        <CartSummaryCard cart={cart!} />
+      </div>
     </ProductListLayout>
   );
 }

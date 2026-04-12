@@ -1,6 +1,6 @@
 import { CheckoutField } from "@/types/checkout.type";
 
-export const CHECKOUT_FIELDS: Record<string, CheckoutField> = {
+const CHECKOUT_FIELDS: Record<string, CheckoutField> = {
   city: {
     label: "City",
     placeholder: "Cairo",
@@ -20,3 +20,5 @@ export const CHECKOUT_FIELDS: Record<string, CheckoutField> = {
     type: "tel",
   },
 };
+
+export { CHECKOUT_FIELDS };

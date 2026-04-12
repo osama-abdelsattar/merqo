@@ -8,7 +8,7 @@ import {
 import { Product } from "@/types/product.type";
 import { HomeIcon } from "lucide-react";
 
-export default function ProductBreadcrumbs({ product }: { product: Product }) {
+function ProductBreadcrumbs({ product }: { product: Product }) {
   const { category, subcategory, title } = product;
 
   return (
@@ -41,3 +41,5 @@ export default function ProductBreadcrumbs({ product }: { product: Product }) {
     </header>
   );
 }
+
+export default ProductBreadcrumbs;

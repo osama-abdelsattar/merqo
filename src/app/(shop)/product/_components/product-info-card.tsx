@@ -1,5 +1,5 @@
-import QuantitySelect from "@/components/ui/quantity-select";
-import Rating from "@/components/ui/rating";
+import QuantitySelect from "@/components/quantity-select";
+import Rating from "@/components/rating";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,9 +24,11 @@ import { Product } from "@/types/product.type";
 import ProductPrice from "@/app/(shop)/product/_components/product-price";
 import WishlistButton from "@/app/(shop)/_components/wishlist-button";
 import Link from "next/link";
+import AddToCartButton from "../../_components/add-to-cart-button";
 
-export default function ProductInfoCard({ product }: { product: Product }) {
+function ProductInfoCard({ product }: { product: Product }) {
   const {
+    _id,
     category,
     brand,
     title,
@@ -42,7 +44,7 @@ export default function ProductInfoCard({ product }: { product: Product }) {
     <Card className="gap-4 w-full rounded-none sm:rounded-4xl h-fit lg:sticky lg:top-24">
       <CardHeader className="gap-3">
         <CardAction>
-          <WishlistButton variant="outline" productId={product._id} />
+          <WishlistButton variant="outline" productId={_id} />
         </CardAction>
         <div className="flex gap-2">
           <Badge asChild>
@@ -73,43 +75,47 @@ export default function ProductInfoCard({ product }: { product: Product }) {
           priceAfterDiscount={priceAfterDiscount}
           quantity={quantity}
         />
-        <div className="flex items-center gap-3">
-          <QuantitySelect availableQuantity={quantity} />
-          <span className="text-base text-muted-foreground">
-            {quantity} available
-          </span>
-        </div>
+        <QuantitySelect
+          availableQuantity={quantity}
+          showAvailable
+          className="gap-3"
+        />
         <CardDescription className="text-base lg:text-lg">
           {description}.
         </CardDescription>
       </CardContent>
       <Separator className="mt-auto" />
       <CardFooter className="grid grid-cols-12 gap-4">
-        <Button className="col-span-12 sm:col-span-6">Add to cart</Button>
+        <AddToCartButton
+          productID={_id}
+          hideTextInSm={false}
+          className="col-span-12 sm:col-span-6"
+        >
+          Add to cart
+        </AddToCartButton>
         <Button className="col-span-12 sm:col-span-6" variant="outline">
           Buy now
         </Button>
-        {SITE_INFO.features?.slice(0, -1).map((feature) => {
-          const { Icon, title, description } = feature;
-          return (
-            <Item
-              variant="muted"
-              key={title}
-              className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-6 xl:col-span-4"
-            >
-              {Icon && (
-                <ItemMedia>
-                  <Icon className="size-6" />
-                </ItemMedia>
-              )}
-              <ItemContent>
-                <ItemTitle>{title}</ItemTitle>
-                <ItemDescription>{description}</ItemDescription>
-              </ItemContent>
-            </Item>
-          );
-        })}
+        {SITE_INFO.features?.slice(0, -1).map((feature) => (
+          <Item
+            variant="muted"
+            key={feature.title}
+            className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-6 xl:col-span-4"
+          >
+            {feature.Icon && (
+              <ItemMedia>
+                <feature.Icon className="size-6" />
+              </ItemMedia>
+            )}
+            <ItemContent>
+              <ItemTitle>{feature.title}</ItemTitle>
+              <ItemDescription>{feature.description}</ItemDescription>
+            </ItemContent>
+          </Item>
+        ))}
       </CardFooter>
     </Card>
   );
 }
+
+export default ProductInfoCard;

@@ -1,37 +1,53 @@
 "use client";
-import { getCartData as fetchCart } from "@/actions/cart.action";
-import { Cart } from "@/types/cart.type";
-import { useQuery } from "@tanstack/react-query";
 import * as React from "react";
 
-const CartContext = React.createContext<{
-  cartData: Cart | null;
+import { useCart } from "@/hooks/use-cart";
+import { Cart } from "@/types/cart.type";
+
+interface CartContextValue {
+  cart: Cart | null;
+  setCart: React.Dispatch<React.SetStateAction<Cart | null>>;
   isLoading: boolean;
   error: Error | null;
-}>({
-  cartData: null,
-  isLoading: false,
-  error: null,
-});
+}
+
+const CartContext = React.createContext<CartContextValue | undefined>(
+  undefined,
+);
 
 function CartProvider({ children }: { children: React.ReactNode }) {
-  const {
-    data: cartData = null,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["cart"],
-    queryFn: async () => {
-      const data = await fetchCart();
-      return data;
-    },
-  });
+  const { data: cartData = null, isLoading, error } = useCart();
+  const [cart, setCart] = React.useState<Cart | null>(cartData);
+
+  React.useEffect(() => {
+    setCart(cartData);
+  }, [cartData]);
+
+  const providerValue = React.useMemo(() => {
+    return {
+      cart,
+      setCart,
+      isLoading,
+      error,
+    };
+  }, [cart, isLoading, error]);
 
   return (
-    <CartContext.Provider value={{ cartData, isLoading, error }}>
+    <CartContext.Provider value={providerValue}>
       {children}
     </CartContext.Provider>
   );
 }
 
-export { CartContext, CartProvider };
+// This removes the "possibly null" warnings in components
+function useCartContext() {
+  const context = React.useContext(CartContext);
+
+  if (context === undefined) {
+    throw new Error("useCartContext must be used within a CartProvider");
+  }
+
+  return context;
+}
+
+export { CartProvider, useCartContext };

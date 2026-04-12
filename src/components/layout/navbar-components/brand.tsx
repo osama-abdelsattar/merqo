@@ -1,7 +1,7 @@
 import { SITE_INFO } from "@/config/site.config";
 import Link from "next/link";
 
-export default function Brand() {
+function Brand() {
   return (
     <Link href="/" className="flex items-center gap-2">
       <SITE_INFO.Logo className="size-8 lg:size-10" />
@@ -16,3 +16,5 @@ export default function Brand() {
     </Link>
   );
 }
+
+export default Brand;

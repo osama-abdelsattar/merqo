@@ -16,7 +16,7 @@ interface PaymentRadioItemProps {
   description: string;
 }
 
-export default function PaymentRadioItem({
+function PaymentRadioItem({
   value,
   title,
   description,
@@ -37,3 +37,5 @@ export default function PaymentRadioItem({
     </FormItem>
   );
 }
+
+export default PaymentRadioItem;

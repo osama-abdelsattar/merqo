@@ -13,7 +13,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export default function PasswordInput(props: React.ComponentProps<"input">) {
+function PasswordInput(props: React.ComponentProps<"input">) {
   const { useState } = React;
   const [passwordVisibility, setPasswordVisibility] = useState("hidden");
   return (
@@ -47,3 +47,5 @@ export default function PasswordInput(props: React.ComponentProps<"input">) {
     </InputGroup>
   );
 }
+
+export default PasswordInput;

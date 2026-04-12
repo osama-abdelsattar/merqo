@@ -3,10 +3,10 @@ import React from "react";
 
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import TooltipButton from "@/components/ui/tooltip-button";
+import TooltipButton from "@/components/tooltip-button";
 import { toast } from "sonner";
 
-export default function ThemeToggle() {
+function ThemeToggle() {
   const { useState, useEffect } = React;
 
   const { setTheme, resolvedTheme } = useTheme();
@@ -36,3 +36,5 @@ export default function ThemeToggle() {
     </TooltipButton>
   );
 }
+
+export default ThemeToggle;

@@ -11,13 +11,7 @@ import {
 } from "@/components/ui/empty";
 import { AlertCircleIcon, RotateCcwIcon } from "lucide-react";
 
-function GlobalError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+function GlobalError({ error }: { error: Error & { digest?: string } }) {
   return (
     <section className="min-h-[calc(100dvh-5rem)] flex items-center justify-center px-6">
       <Empty className="max-w-lg mx-auto gap-6 border rounded-4xl">
@@ -32,7 +26,7 @@ function GlobalError({
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent className="flex-row justify-center gap-2">
-          <Button onClick={reset}>
+          <Button onClick={() => window.location.reload()}>
             <RotateCcwIcon />
             Try again
           </Button>

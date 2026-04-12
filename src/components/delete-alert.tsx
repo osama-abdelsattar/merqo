@@ -12,12 +12,14 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export default function DeleteAlertButton({
+function DeleteAlertButton({
   children,
   mutate,
+  innerButtonText = "Delete",
 }: {
   children: React.ReactNode;
   mutate: () => void;
+  innerButtonText?: string;
 }) {
   return (
     <AlertDialog>
@@ -32,10 +34,12 @@ export default function DeleteAlertButton({
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction variant="destructive" onClick={mutate}>
-            Delete
+            {innerButtonText}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
 }
+
+export default DeleteAlertButton;

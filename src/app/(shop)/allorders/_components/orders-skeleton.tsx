@@ -1,5 +1,5 @@
-import Section from "@/components/ui/section";
-import SectionHeader from "@/components/ui/section-header";
+import Section from "@/components/section";
+import SectionHeader from "@/components/section-header";
 import { Skeleton } from "@/components/ui/skeleton";
 
 function OrdersSkeleton() {

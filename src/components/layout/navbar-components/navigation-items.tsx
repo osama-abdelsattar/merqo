@@ -4,7 +4,7 @@ import UserMenu from "@/components/layout/navbar-components/user-menu";
 import CategoriesMenu from "@/components/layout/navbar-components/categories-menu";
 import NavLinks from "@/components/layout/navbar-components/nav-links";
 
-export default function NavigationItems(props: React.ComponentProps<"ul">) {
+function NavigationItems(props: React.ComponentProps<"ul">) {
   return (
     <ul {...props}>
       <NavLinks />
@@ -21,3 +21,5 @@ export default function NavigationItems(props: React.ComponentProps<"ul">) {
     </ul>
   );
 }
+
+export default NavigationItems;

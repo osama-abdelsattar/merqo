@@ -2,14 +2,10 @@
 
 import Link from "next/link";
 import { EyeIcon } from "lucide-react";
-import TooltipButton from "@/components/ui/tooltip-button";
+import TooltipButton from "@/components/tooltip-button";
 import WishlistButton from "@/app/(shop)/_components/wishlist-button";
 
-function ProductCardActions({
-  productID,
-}: {
-  productID: string;
-}) {
+function ProductCardActions({ productID }: { productID: string }) {
   return (
     <>
       <WishlistButton variant="secondary" productId={productID} />

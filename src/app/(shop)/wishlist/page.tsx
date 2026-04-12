@@ -1,74 +1,40 @@
 "use client";
+import * as React from "react";
 
 import ProductListLayout from "@/components/layout/product-list-layout";
-import AppProductMiniCard from "@/components/ui/app-product-mini-card";
-import { useWishlist, useWishlistMutation } from "@/hooks/use-wishlist";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { ArrowLeftIcon, XIcon } from "lucide-react";
-import AddToCartButton from "@/app/(shop)/_components/add-to-cart-button";
-import { Spinner } from "@/components/ui/spinner";
-import DeleteAlertButton from "@/components/ui/delete-alert";
+import ContinueShoppingButton from "../_components/continue-shopping-button";
+import { useWishlistContext } from "@/context/wishlist.context";
+import WishlistProductCard from "./_components/wishlist-product-card";
+import WishlistSkeleton from "./_components/wishlist-skeleton";
+import { useQueryClient } from "@tanstack/react-query";
 
 function WishlistPage() {
-  const { data: wishlistData, isLoading } = useWishlist();
-  const { mutate: toggleWishlist, isPending } = useWishlistMutation();
+  const { wishlistData, isLoading } = useWishlistContext();
 
-  const products = wishlistData?.data || [];
+  const queryClient = useQueryClient();
+  React.useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ["wishlist"] });
+  }, [queryClient]);
 
   return (
     <ProductListLayout
       title="Wishlist"
-      isEmpty={products.length === 0}
+      isEmpty={!wishlistData || wishlistData?.count < 1}
       isLoading={isLoading}
+      Skeleton={WishlistSkeleton}
       emptyState={{
-        title: "Wishlist Products",
+        title: "wishlist products",
         cta: { href: "/", text: "Start Shopping" },
       }}
-      listFooter={
-        <div className="flex justify-center sm:justify-start">
-          <Button variant="outline" size="lg" asChild>
-            <Link href="/">
-              <ArrowLeftIcon /> Continue shopping
-            </Link>
-          </Button>
-        </div>
-      }
     >
-      {products.map((product) => (
-        <AppProductMiniCard
-          key={product._id}
-          product={product}
-          topAction={
-            <DeleteAlertButton
-              mutate={() =>
-                toggleWishlist({ productId: product._id, isToggled: true })
-              }
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                disabled={isPending}
-              >
-                {isPending ? (
-                  <Spinner className="size-4" />
-                ) : (
-                  <XIcon className="size-4" />
-                )}
-              </Button>
-            </DeleteAlertButton>
-          }
-          actions={
-            <div className="flex items-center justify-between w-full gap-4">
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold whitespace-nowrap">
-                {product.priceAfterDiscount || product.price}£
-              </span>
-              <AddToCartButton productID={product._id} />
-            </div>
-          }
-        />
-      ))}
+      <div className="col-span-full grid xl:grid-cols-2 gap-4">
+        {wishlistData?.data?.map((product) => (
+          <WishlistProductCard key={product._id} product={product} />
+        ))}
+        <div className="col-span-full">
+          <ContinueShoppingButton variant="outline" size="lg" />
+        </div>
+      </div>
     </ProductListLayout>
   );
 }

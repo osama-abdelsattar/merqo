@@ -80,13 +80,15 @@ merqo/
 │   ├── actions/              # Domain-specific Server Actions (Cart, Orders, etc.)
 │   ├── components/           # UI Components
 │   │   ├── layout/           # Shared Layout (Navbar, Footer, Toaster)
-│   │   ├── providers/        # Context Providers (Theme, QueryClient, Auth)
-│   │   └── ui/               # Primitive UI Components
+│   │   └── ui/               # Shadcn UI Components
 │   ├── config/               # Application Configuration
 │   ├── constants/            # Global Constants (Breakpoints, etc.)
+│   ├── context/              # State management
 │   ├── hooks/                # Custom React Hooks
 │   ├── lib/                  # Library Wrappers (Zod Schemas, Animations)
+│   ├── providers/            # Context Providers (Theme, QueryClient, Auth)
 │   ├── services/             # Core API Service Layer
+│   ├── styles/               # CSS Stylesheets
 │   ├── types/                # Strict TypeScript Definitions
 │   └── utils/                # Pure Utility Functions
 ├── public/                   # Static Assets
