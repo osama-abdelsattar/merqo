@@ -26,7 +26,7 @@ function Orders() {
     <AnimatedSection>
       <SectionHeader>Orders</SectionHeader>
       <div className="grid lg:grid-cols-2 gap-4">
-        {orders.toReversed().map((order) => (
+        {orders?.toReversed()?.map((order) => (
           <OrderCard key={order._id} order={order} />
         ))}
       </div>
