@@ -20,9 +20,11 @@ interface ApiResponse<T> {
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
 function getSiteBaseUrl() {
-  if (typeof window !== "undefined") return window.location.origin; // Browser
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // Vercel Server
-  return `http://localhost:3000`; // Local Dev
+  return (
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    window.location.origin ||
+    "http://localhost:3000"
+  );
 }
 
 function buildApiUrl(
