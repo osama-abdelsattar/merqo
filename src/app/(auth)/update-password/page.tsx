@@ -15,7 +15,7 @@ import PasswordInput from "@/components/password-input";
 import { signOut } from "next-auth/react";
 import { PASSWORD_REGEX } from "@/lib/schemas/auth.schema";
 
-function UpdatePasswordPage() {
+function UpdatePasswordContent() {
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string>();
 
@@ -79,6 +79,20 @@ function UpdatePasswordPage() {
         </CardFooter>
       </AuthCard>
     </form>
+  );
+}
+
+function UpdatePasswordPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="flex h-full w-full items-center justify-center p-8">
+          <Spinner />
+        </div>
+      }
+    >
+      <UpdatePasswordContent />
+    </React.Suspense>
   );
 }
 

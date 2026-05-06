@@ -22,7 +22,7 @@ import {
 } from "@/actions/password-reset.action";
 import { Spinner } from "@/components/ui/spinner";
 
-function ResetCodePage() {
+function ResetCodeContent() {
   const [value, setValue] = React.useState<string>();
   const [error, setError] = React.useState<string>();
 
@@ -132,6 +132,20 @@ function ResetCodePage() {
         </CardFooter>
       </AuthCard>
     </form>
+  );
+}
+
+function ResetCodePage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="flex h-full w-full items-center justify-center p-8">
+          <Spinner />
+        </div>
+      }
+    >
+      <ResetCodeContent />
+    </React.Suspense>
   );
 }
 
