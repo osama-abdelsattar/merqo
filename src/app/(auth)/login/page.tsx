@@ -69,7 +69,7 @@ function LoginPage() {
               autoComplete="current-password webauthn"
               labelRight={
                 <Link
-                  href="#"
+                  href="/forgot-password"
                   className="inline-block text-sm underline-offset-4 hover:underline"
                 >
                   Forgot your password?

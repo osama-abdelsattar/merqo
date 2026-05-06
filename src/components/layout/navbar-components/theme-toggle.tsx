@@ -24,6 +24,7 @@ function ThemeToggle() {
       variant="outline"
       size="icon-lg"
       className="relative group overflow-hidden"
+      type="button"
       onClick={() => {
         if (!mounted) return;
         toast.info(`Theme changed to: ${isDark ? "Light" : "Dark"}`);

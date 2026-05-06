@@ -52,11 +52,9 @@ async function removeFromWishlist(productId: string) {
     );
     return res.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw new Error(
-        error.response?.data?.message || "Failed to remove from wishlist",
-      );
-    }
+    if (axios.isAxiosError(error))
+      throw new Error(error.response?.data?.message);
+
     throw new Error("Failed to remove from wishlist");
   }
 }

@@ -11,8 +11,9 @@ async function createOrder(
   orderType: "Cash" | "Visa",
   orderInfo: object,
   cartId: string,
-): Promise<CheckoutApiResponse | CheckoutApiSession | null> {
+): Promise<CheckoutApiResponse | CheckoutApiSession> {
   const token = await getServerToken();
+  if (!token) throw new Error("Unauthorized");
   const url =
     orderType === "Cash"
       ? buildApiUrl(["orders", cartId], {}, "v2")
@@ -35,9 +36,11 @@ async function createOrder(
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return error.response?.data;
+      throw new Error(
+        error.response?.data?.message || "Failed to create order",
+      );
     }
-    return null;
+    throw new Error("Failed to create order");
   }
 }
 

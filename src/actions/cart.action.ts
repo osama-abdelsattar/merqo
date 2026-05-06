@@ -5,8 +5,9 @@ import { buildApiUrl, fetchApi } from "@/utils/api.util";
 import { getServerToken } from "@/utils/token.util";
 import axios from "axios";
 
-async function addToCart(productId: string): Promise<Cart | null> {
+async function addToCart(productId: string): Promise<Cart> {
   const token = await getServerToken();
+  if (!token) throw new Error("Unauthorized");
 
   try {
     const res = await axios.post<Cart>(
@@ -19,9 +20,10 @@ async function addToCart(productId: string): Promise<Cart | null> {
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return error.response?.data;
+      throw new Error(error.response?.data?.message || "Failed to add to cart");
     }
-    return null;
+
+    throw new Error("Failed to add to cart");
   }
 }
 
@@ -37,11 +39,13 @@ async function getCartData() {
   );
 
   if (data?.status === "success") return data;
-  else return null;
+
+  return null;
 }
 
-async function deleteFromCart(productId: string): Promise<Cart | null> {
+async function deleteFromCart(productId: string): Promise<Cart> {
   const token = await getServerToken();
+  if (!token) throw new Error("Unauthorized");
 
   try {
     const res = await axios.delete<Cart>(
@@ -55,14 +59,18 @@ async function deleteFromCart(productId: string): Promise<Cart | null> {
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return error.response?.data;
+      throw new Error(
+        error.response?.data?.message || "Failed to delete from cart",
+      );
     }
-    return null;
+
+    throw new Error("Failed to delete from cart");
   }
 }
 
-async function clearCart(): Promise<Cart | null> {
+async function clearCart(): Promise<Cart> {
   const token = await getServerToken();
+  if (!token) throw new Error("Unauthorized");
 
   try {
     const res = await axios.delete<Cart>(buildApiUrl(["cart"], {}, "v2"), {
@@ -73,9 +81,10 @@ async function clearCart(): Promise<Cart | null> {
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return error.response?.data;
+      throw new Error(error.response?.data?.message || "Failed to clear cart");
     }
-    return null;
+
+    throw new Error("Failed to clear cart");
   }
 }
 
