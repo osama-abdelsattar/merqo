@@ -1,7 +1,6 @@
 "use client";
 
 import { CardContent } from "@/components/ui/card";
-import Link from "next/link";
 import { Form } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +15,7 @@ import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import ForgotPasswordLink from "@/components/forgot-password-link";
 
 function LoginPage() {
   const router = useRouter();
@@ -57,8 +57,8 @@ function LoginPage() {
         title="Login to your account"
         description="Enter your email below to login to your account"
       />
-      <Form {...form}>
-        <CardContent>
+      <CardContent>
+        <Form {...form}>
           <form
             onSubmit={form.handleSubmit(logIn)}
             className="flex flex-col gap-4"
@@ -67,14 +67,7 @@ function LoginPage() {
             <AuthFormField
               name="password"
               autoComplete="current-password webauthn"
-              labelRight={
-                <Link
-                  href="/forgot-password"
-                  className="inline-block text-sm underline-offset-4 hover:underline"
-                >
-                  Forgot your password?
-                </Link>
-              }
+              labelRight={<ForgotPasswordLink />}
             />
             <AuthSubmitButton
               type="login"
@@ -82,9 +75,9 @@ function LoginPage() {
               isFormSubmitting={form.formState.isSubmitting}
             />
           </form>
-        </CardContent>
-        <AuthFooter type="login" />
-      </Form>
+        </Form>
+      </CardContent>
+      <AuthFooter type="login" />
     </AuthCard>
   );
 }

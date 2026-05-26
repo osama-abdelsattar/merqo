@@ -4,7 +4,7 @@ import { deleteFromCart } from "@/actions/cart.action";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import AppProductMiniCard from "@/components/app-product-mini-card";
-import DeleteAlertButton from "@/components/delete-alert";
+import DeleteAlertButton from "@/components/delete-alert-button";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Trash2Icon } from "lucide-react";

@@ -72,4 +72,5 @@ function AppFormField({
   );
 }
 
-export { AppFormField as default, type FormFieldConfig };
+export default AppFormField;
+export type { FormFieldConfig };

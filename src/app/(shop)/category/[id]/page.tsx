@@ -17,7 +17,7 @@ async function SubCategories({ params }: { params: Promise<{ id: string }> }) {
 
   return (
     <AnimatedSection>
-      <SectionHeader>Sub Categories</SectionHeader>
+      <SectionHeader level="h1">Sub Categories</SectionHeader>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {subCategories.map((subCategory) => (
           <SubCategoryCard

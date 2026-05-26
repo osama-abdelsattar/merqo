@@ -68,7 +68,7 @@ function OrderInvoiceSheet({
             </div>
             <div className="flex flex-col items-end gap-2">
               <SheetClose asChild>
-                <Button size="icon-sm" variant="outline">
+                <Button size="icon-sm" variant="outline" aria-label="Close invoice">
                   <XIcon />
                 </Button>
               </SheetClose>

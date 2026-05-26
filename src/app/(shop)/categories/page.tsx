@@ -16,7 +16,7 @@ async function Categories() {
 
   return (
     <AnimatedSection>
-      <SectionHeader>Categories</SectionHeader>
+      <SectionHeader level="h1">Categories</SectionHeader>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         {categories.map((category) => (
           <CategoryCard

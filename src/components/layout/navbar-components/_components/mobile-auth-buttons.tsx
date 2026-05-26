@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import LogOutAlertButton from "@/components/logout-alert";
+import LogOutAlertButton from "@/components/log-out-alert-button";
 import { Session } from "next-auth";
 
 interface MobileAuthButtonsProps {

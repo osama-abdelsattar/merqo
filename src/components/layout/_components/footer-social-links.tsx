@@ -17,6 +17,7 @@ function FooterSocialLinks() {
             <Link
               href={href}
               className="size-10 rounded-full flex items-center justify-center text-muted-foreground"
+              aria-label={`Follow us on ${platform}`}
             >
               {iconOnly && <Icon className="size-5" />} {!iconOnly && platform}
             </Link>

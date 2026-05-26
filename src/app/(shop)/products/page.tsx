@@ -24,7 +24,7 @@ async function AllProducts({
 
   return (
     <AnimatedSection>
-      <SectionHeader>Products</SectionHeader>
+      <SectionHeader level="h1">Products</SectionHeader>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {allProducts.data.map((product) => (
           <ProductCard key={product._id} product={product} className="pt-0" />

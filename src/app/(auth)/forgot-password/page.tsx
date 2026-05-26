@@ -10,22 +10,26 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { sendPasswordResetCode } from "@/actions/password-reset.action";
 import { useToastMutation } from "@/hooks/use-toast-mutation";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function ForgotPasswordPage() {
+function ForgotPasswordContent() {
   const [emailAddress, setEmailAddress] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
 
   const router = useRouter();
+  const params = useSearchParams();
+  const redirect = params.get("redirect");
 
   const { mutate: sendResetCode, isPending } = useToastMutation({
     mutationFn: (email: string) => sendPasswordResetCode(email),
     onSuccessWithToast() {
-      router.push(
-        `/forgot-password/verify-code?email=${encodeURIComponent(emailAddress)}`,
-      );
+      const next = new URLSearchParams({
+        email: emailAddress,
+        ...(redirect ? { redirect } : {}),
+      });
+      router.push(`/forgot-password/verify-code?${next.toString()}`);
     },
     successMessage: (data) => data.message ?? "Done successfully",
     errorMessage: (error) => error.message,
@@ -69,11 +73,19 @@ function ForgotPasswordPage() {
         <CardFooter>
           <Button type="submit" className="ms-auto" disabled={isPending}>
             {isPending && <Spinner />}
-            Send Reset Link
+            Send Reset Code
           </Button>
         </CardFooter>
       </AuthCard>
     </form>
+  );
+}
+
+function ForgotPasswordPage() {
+  return (
+    <React.Suspense fallback={null}>
+      <ForgotPasswordContent />
+    </React.Suspense>
   );
 }
 

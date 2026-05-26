@@ -24,7 +24,7 @@ function BrandCard({ brand, className, ...props }: BrandCardProps) {
           <Image
             fill
             src={brand.image}
-            alt={brand.name}
+            alt={brand.name ?? ""}
             className="rounded-4xl"
           />
         </div>

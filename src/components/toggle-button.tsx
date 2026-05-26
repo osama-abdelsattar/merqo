@@ -15,7 +15,9 @@ function ToggleButton({ children, tooltipText, ...props }: ToggleButtonProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Toggle {...props}>{children}</Toggle>
+        <Toggle aria-label={props["aria-label"] ?? tooltipText} {...props}>
+          {children}
+        </Toggle>
       </TooltipTrigger>
       <TooltipContent>{tooltipText}</TooltipContent>
     </Tooltip>

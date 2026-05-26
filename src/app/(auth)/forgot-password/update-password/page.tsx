@@ -22,6 +22,7 @@ function UpdatePasswordContent() {
   const router = useRouter();
   const params = useSearchParams();
   const emailAddress = params.get("email");
+  const redirectHref = params.get("redirect");
 
   const { mutate, isPending } = useToastMutation({
     mutationFn: () => {
@@ -29,10 +30,12 @@ function UpdatePasswordContent() {
       return resetPassword(emailAddress, password);
     },
     onSuccessWithToast() {
-      signOut({ redirect: false });
-      router.push("/login");
+      if (!redirectHref) {
+        signOut({ redirect: false });
+        router.push("/login");
+      } else router.push(redirectHref);
     },
-    successMessage: "Password updated, please login again",
+    successMessage: `Password updated, ${redirectHref ? "redirecting back..." : "please login again"}`,
     errorMessage: (data) => data.message,
   });
 

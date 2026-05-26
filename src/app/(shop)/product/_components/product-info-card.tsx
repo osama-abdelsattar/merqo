@@ -58,7 +58,7 @@ function ProductInfoCard({ product }: { product: Product }) {
         </div>
         <div className="flex flex-col gap-1">
           <CardTitle className="text-4xl font-bold">
-            <h2>{title}</h2>
+            <h1>{title}</h1>
           </CardTitle>
         </div>
         <Rating

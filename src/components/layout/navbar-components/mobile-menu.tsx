@@ -33,6 +33,7 @@ import ThemeToggle from "@/components/layout/navbar-components/theme-toggle";
 import MobileCategoriesSection from "./_components/mobile-categories-section";
 import MobileNavLinks from "./_components/mobile-nav-links";
 import MobileAuthButtons from "./_components/mobile-auth-buttons";
+import ProfileItem from "./_components/profile-item";
 
 function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
   const { data: session } = useSession();
@@ -57,6 +58,11 @@ function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
             <FaXmark className="size-4" />
           </DrawerClose>
         </DrawerHeader>
+        <ProfileItem
+          type="mobile"
+          className="rounded-none"
+          onLinkClick={handleLinkClick}
+        />
         <ScrollArea className="grow overflow-y-hidden border-y">
           <div className="p-4 flex flex-col gap-4">
             <SearchField className="sm:hidden w-full" />

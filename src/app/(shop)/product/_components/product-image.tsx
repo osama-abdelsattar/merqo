@@ -76,6 +76,7 @@ function ProductImage({ images, alt }: ProductImageProps) {
           className="swiper-button-prev-custom"
           size="icon-lg"
           variant="outline"
+          aria-label="Previous image"
         >
           <ChevronLeft />
         </Button>
@@ -83,6 +84,7 @@ function ProductImage({ images, alt }: ProductImageProps) {
           className="swiper-button-next-custom"
           size="icon-lg"
           variant="outline"
+          aria-label="Next image"
         >
           <ChevronRight />
         </Button>

@@ -9,39 +9,35 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSession } from "next-auth/react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { User2Icon } from "lucide-react";
-import { getInitials } from "@/utils/text.util";
 import AuthenticatedMenuItems from "./_components/authenticated-menu-items";
 import UnauthenticatedMenuItems from "./_components/unauthenticated-menu-items";
 import Link from "next/link";
 import Badge from "./badge";
 import { Separator } from "@/components/ui/separator";
+import UserAvatar from "./_components/user-avatar";
+import ProfileItem from "./_components/profile-item";
 
 function UserMenu() {
-  const { data: session } = useSession();
-
+  const session = useSession();
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button size="icon-lg" className="rounded-full">
-          <Avatar size="lg">
-            <AvatarImage className="relative">
-              <Image fill src={session?.user?.image ?? ""} alt="" />
-            </AvatarImage>
-            <AvatarFallback>
-              {session?.user?.name ? (
-                getInitials(session.user.name)
-              ) : (
-                <User2Icon className="size-5" />
-              )}
-            </AvatarFallback>
-          </Avatar>
+      <DropdownMenuTrigger asChild disabled={session.status === "loading"}>
+        <Button
+          size="icon-lg"
+          className="rounded-full"
+          aria-label="User account menu: Edit profile, logout, or browse cart, wishlist, and orders"
+        >
+          <UserAvatar size="lg" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex flex-col gap-1" align="end">
+      <DropdownMenuContent
+        className="flex flex-col gap-1 min-w-fit"
+        align="end"
+      >
+        {session.status === "authenticated" && (
+          <ProfileItem size="sm" className="flex-nowrap items-center p-2" />
+        )}
         <DropdownMenuGroup>
           {USER_MENU_LINKS.map((link) => (
             <DropdownMenuItem
@@ -58,7 +54,7 @@ function UserMenu() {
         </DropdownMenuGroup>
         <Separator />
         <DropdownMenuGroup>
-          {session ? (
+          {session.status === "authenticated" ? (
             <AuthenticatedMenuItems />
           ) : (
             <UnauthenticatedMenuItems authLinks={AUTH_LINKS} />

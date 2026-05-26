@@ -2,7 +2,7 @@
 
 import AppProductMiniCard from "@/components/app-product-mini-card";
 import { Button } from "@/components/ui/button";
-import DeleteAlertButton from "@/components/delete-alert";
+import DeleteAlertButton from "@/components/delete-alert-button";
 import { Spinner } from "@/components/ui/spinner";
 import { XIcon } from "lucide-react";
 import AddToCartButton from "../../_components/add-to-cart-button";
@@ -44,6 +44,7 @@ function WishlistProductCard({ product }: { product: Product }) {
             variant="ghost"
             size="icon"
             className="rounded-full"
+            aria-label="Remove item from wishlist"
             disabled={isPending}
           >
             {isPending ? (

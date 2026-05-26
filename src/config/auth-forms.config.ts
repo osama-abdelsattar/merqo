@@ -3,13 +3,13 @@ import { AuthField } from "@/types/auth.type";
 const AUTH_FIELDS: Record<string, AuthField> = {
   name: {
     label: "Full Name",
-    placeholder: "Enter your full name",
+    placeholder: "e.g. Jack Sparrow",
     autoComplete: "name",
     type: "text",
   },
   email: {
     label: "Email Address",
-    placeholder: "Enter your email address",
+    placeholder: "example@domain.com",
     autoComplete: "email webauthn",
     type: "email",
   },
@@ -22,7 +22,13 @@ const AUTH_FIELDS: Record<string, AuthField> = {
   password: {
     label: "Password",
     placeholder: "Enter your password",
-    autoComplete: "new-password webauthn",
+    autoComplete: "current-password webauthn",
+    type: "password",
+  },
+  currentPassword: {
+    label: "Old Password",
+    placeholder: "Enter your old password",
+    autoComplete: "current-password webauthn",
     type: "password",
   },
   rePassword: {

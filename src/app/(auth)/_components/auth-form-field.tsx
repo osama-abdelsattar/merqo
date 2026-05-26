@@ -9,10 +9,20 @@ interface AuthFormFieldProps extends React.ComponentProps<typeof FormItem> {
   name: keyof typeof AUTH_FIELDS;
   labelRight?: React.ReactNode;
   autoComplete?: string;
+  label?: string;
+  placeholder?: string;
 }
 
-function AuthFormField({ name, ...props }: AuthFormFieldProps) {
-  const fieldConfig = AUTH_FIELDS[name];
+function AuthFormField({
+  name,
+  label,
+  placeholder,
+  ...props
+}: AuthFormFieldProps) {
+  const fieldConfig = structuredClone(AUTH_FIELDS[name]);
+
+  if (label) fieldConfig.label = label;
+  if (placeholder) fieldConfig.placeholder = placeholder;
 
   return <AppFormField name={name as string} config={fieldConfig} {...props} />;
 }

@@ -16,7 +16,7 @@ function FooterPaymentMethods({
         const { srLabel, Icon } = method;
         return (
           <div key={srLabel}>
-            <Icon className="size-6" />
+            <Icon className="size-6" aria-hidden="true" />
             <span className="sr-only">{srLabel}</span>
           </div>
         );

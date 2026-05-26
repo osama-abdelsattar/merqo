@@ -28,7 +28,7 @@ function GlobalError({ error }: { error: Error & { digest?: string } }) {
         <EmptyContent className="flex-row justify-center gap-2">
           <Button onClick={() => window.location.reload()}>
             <RotateCcwIcon />
-            Try again
+            Refresh
           </Button>
         </EmptyContent>
       </Empty>

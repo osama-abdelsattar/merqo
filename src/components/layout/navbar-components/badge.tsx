@@ -16,9 +16,12 @@ const Badge = ({ href }: { href: Url }) => {
 
   if (!badge || badge < 1) return null;
 
+  const badgeLabel = href === "/cart" ? "items in cart" : "items in wishlist";
+
   return (
     <ShadcnBadge className="ms-auto p-0 size-5 text-xs text-primary-foreground!">
       {badge}
+      <span className="sr-only"> {badgeLabel}</span>
     </ShadcnBadge>
   );
 };

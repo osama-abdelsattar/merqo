@@ -27,6 +27,7 @@ function QuantitySelect({
         <InputGroupAddon align="inline-start">
           <InputGroupButton
             size="icon-sm"
+            aria-label="Decrease quantity"
             onClick={() => {
               if (quantity - 1 >= 0) setQuantity(quantity - 1);
             }}
@@ -36,6 +37,7 @@ function QuantitySelect({
         </InputGroupAddon>
         <InputGroupInput
           type="number"
+          aria-label="Quantity"
           className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-center"
           value={quantity}
           min={1}
@@ -49,6 +51,7 @@ function QuantitySelect({
         <InputGroupAddon align="inline-end">
           <InputGroupButton
             size="icon-sm"
+            aria-label="Increase quantity"
             onClick={() => {
               if (quantity + 1 <= availableQuantity) setQuantity(quantity + 1);
             }}

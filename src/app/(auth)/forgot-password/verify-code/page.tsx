@@ -29,6 +29,7 @@ function ResetCodeContent() {
   const router = useRouter();
   const params = useSearchParams();
   const emailAddress = params.get("email");
+  const redirect = params.get("redirect");
 
   const {
     mutate: verifyCode,
@@ -38,9 +39,11 @@ function ResetCodeContent() {
     mutationFn: (OTP: string) => verifyPasswordResetCode(OTP),
     onSuccessWithToast() {
       if (!emailAddress) return;
-      router.push(
-        `/update-password?email=${encodeURIComponent(emailAddress)}`,
-      );
+      const next = new URLSearchParams({
+        email: emailAddress,
+        ...(redirect ? { redirect } : {}),
+      });
+      router.push(`/forgot-password/update-password?${next.toString()}`);
     },
     successMessage: "Code verified, redirecting to update password",
     errorMessage: (data) => data.message,

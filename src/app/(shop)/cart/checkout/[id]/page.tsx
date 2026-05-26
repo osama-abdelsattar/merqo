@@ -90,7 +90,7 @@ function Checkout({ params }: { params: Promise<{ id: string }> }) {
   });
   return (
     <AnimatedSection>
-      <SectionHeader>Complete Your Order</SectionHeader>
+      <SectionHeader level="h1">Complete Your Order</SectionHeader>
       <div className="*:lg:sticky *:lg:top-24">
         <div className="max-w-2xl mx-auto flex flex-col gap-4">
           <Card>

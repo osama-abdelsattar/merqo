@@ -63,6 +63,7 @@ function AddToCartButton({
     <Button
       onClick={() => mutate(productID)}
       size={notHidden ? "default" : "icon-lg"}
+      aria-label="Add to cart"
       disabled={isPending}
       {...props}
     >

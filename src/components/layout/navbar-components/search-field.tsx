@@ -9,7 +9,7 @@ function SearchField(
 ) {
   return (
     <ButtonGroup {...props}>
-      <Input placeholder="Search..." />
+      <Input placeholder="Search..." aria-label="Search products" />
       <Button variant="default" aria-label="Search">
         <SearchIcon />
       </Button>

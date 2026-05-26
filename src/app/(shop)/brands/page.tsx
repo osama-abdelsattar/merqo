@@ -13,7 +13,7 @@ async function Brands() {
 
   return (
     <AnimatedSection>
-      <SectionHeader>Brands</SectionHeader>
+      <SectionHeader level="h1">Brands</SectionHeader>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         {brands.map((brand) => (
           <BrandCard brand={brand} key={brand._id} />

@@ -16,8 +16,8 @@ function ProductBreadcrumbs({ product }: { product: Product }) {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">
-              <HomeIcon className="size-4" />
+            <BreadcrumbLink href="/" aria-label="Home">
+              <HomeIcon className="size-4" aria-hidden="true" />
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />

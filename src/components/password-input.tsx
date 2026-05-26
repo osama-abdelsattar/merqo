@@ -30,6 +30,7 @@ function PasswordInput(props: React.ComponentProps<"input">) {
               type="button"
               size="icon"
               variant="ghost"
+              aria-label={passwordVisibility === "shown" ? "Hide password" : "Show password"}
               onClick={() =>
                 setPasswordVisibility((prev) =>
                   prev === "hidden" ? "shown" : "hidden",
