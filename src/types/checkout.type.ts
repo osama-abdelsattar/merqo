@@ -1,5 +1,5 @@
 import { Url } from "next/dist/shared/lib/router/router";
-import { Order } from "./order.type";
+import { Order } from "@/types/order.type";
 
 interface CheckoutField {
   label: string;

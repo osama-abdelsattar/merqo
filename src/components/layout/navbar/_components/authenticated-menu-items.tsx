@@ -5,7 +5,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import LogOutAlertButton from "@/components/log-out-alert-button";
+import LogOutAlertButton from "@/components/common/log-out-alert-button";
 
 function AuthenticatedMenuItems() {
   return (

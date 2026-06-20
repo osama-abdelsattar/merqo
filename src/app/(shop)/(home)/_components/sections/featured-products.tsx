@@ -1,9 +1,10 @@
 import { getFeaturedProducts } from "@/services/product.service";
-import EmptyProducts from "@/app/(shop)/(home)/_components/cards/empty-products";
+import EmptyCard from "@/components/common/empty-card";
 import ViewMoreCard from "@/app/(shop)/(home)/_components/cards/view-more-card";
 import ProductCard from "@/app/(shop)/(home)/_components/cards/product-card";
-import AnimatedSection from "@/components/animated-section";
-import SectionHeader from "@/components/section-header";
+import AnimatedSection from "@/components/common/animated-section";
+import SectionHeader from "@/components/common/section-header";
+import { PackageSearch } from "lucide-react";
 
 async function FeaturedProducts() {
   const productList = await getFeaturedProducts();
@@ -19,7 +20,12 @@ async function FeaturedProducts() {
           <ViewMoreCard />
         </div>
       ) : (
-        <EmptyProducts className="col-span-full" />
+        <EmptyCard
+          icon={<PackageSearch />}
+          title="No featured products"
+          className="col-span-full"
+          cta={{ href: "/products", text: "Browse All Products" }}
+        />
       )}
     </AnimatedSection>
   );

@@ -1,5 +1,5 @@
-import SearchField from "@/components/layout/navbar-components/search-field";
-import NavigationItems from "@/components/layout/navbar-components/navigation-items";
+import SearchField from "@/components/layout/navbar/search-field";
+import NavigationItems from "@/components/layout/navbar/navigation-items";
 
 function DesktopMenu() {
   return (

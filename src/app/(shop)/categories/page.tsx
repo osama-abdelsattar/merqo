@@ -1,17 +1,23 @@
-import AnimatedSection from "@/components/animated-section";
-import SectionHeader from "@/components/section-header";
+import AnimatedSection from "@/components/common/animated-section";
+import SectionHeader from "@/components/common/section-header";
 import CategoryCard from "@/app/(shop)/(home)/_components/cards/category-card";
-import EmptyCategories from "../category/_components/empty-categories";
+import EmptyCard from "@/components/common/empty-card";
 import { getTopCategories } from "@/services/category.service";
+import { LayoutGrid } from "lucide-react";
 
 async function Categories() {
   const categories = (await getTopCategories())?.toReversed();
 
   if (!categories || !(categories.length > 0))
     return (
-      <section className="min-h-[calc(100dvh-5rem)] flex items-center justify-center">
-        <EmptyCategories />
-      </section>
+      <AnimatedSection>
+        <SectionHeader level="h1">Categories</SectionHeader>
+        <EmptyCard
+          icon={<LayoutGrid />}
+          title="No categories available"
+          cta={{ href: "/products", text: "Browse Products" }}
+        />
+      </AnimatedSection>
     );
 
   return (

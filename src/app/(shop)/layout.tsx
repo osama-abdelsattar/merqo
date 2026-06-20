@@ -1,5 +1,5 @@
-import Footer from "@/components/layout/footer";
-import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer/footer";
+import Navbar from "@/components/layout/navbar/navbar";
 import ScrollToTop from "@/app/(shop)/_components/scroll-to-top";
 
 function HomeLayout({ children }: { children: React.ReactNode }) {

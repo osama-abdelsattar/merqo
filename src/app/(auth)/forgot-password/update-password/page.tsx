@@ -6,12 +6,12 @@ import AuthCard from "@/app/(auth)/_components/auth-card";
 import AuthHeader from "@/app/(auth)/_components/auth-header";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { useRouter, useSearchParams } from "next/navigation";
-import EmptyCard from "@/components/empty-card";
+import EmptyCard from "@/components/common/empty-card";
 import { Button } from "@/components/ui/button";
-import { useToastMutation } from "@/hooks/use-toast-mutation";
+import { useToastMutation } from "@/hooks/use-toast-mutation.hook";
 import { Spinner } from "@/components/ui/spinner";
 import { resetPassword } from "@/actions/password-reset.action";
-import PasswordInput from "@/components/password-input";
+import PasswordInput from "@/components/common/password-input";
 import { signOut } from "next-auth/react";
 import { PASSWORD_REGEX } from "@/lib/schemas/auth.schema";
 

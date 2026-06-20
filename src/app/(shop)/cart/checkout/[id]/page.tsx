@@ -3,8 +3,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { createOrder } from "@/actions/order.action";
 import { toast } from "sonner";
-import AnimatedSection from "@/components/animated-section";
-import SectionHeader from "@/components/section-header";
+import AnimatedSection from "@/components/common/animated-section";
+import SectionHeader from "@/components/common/section-header";
 import {
   Card,
   CardContent,
@@ -33,7 +33,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Separator } from "@/components/ui/separator";
 
 import { RadioGroup } from "@/components/ui/radio-group";
-import AppFormField from "@/components/app-form-field";
+import AppFormField from "@/components/common/app-form-field";
 import { CHECKOUT_FIELDS } from "@/config/checkout-form.config";
 import PaymentRadioItem from "@/app/(shop)/cart/checkout/_components/payment-radio-item";
 import { useRouter } from "next/navigation";

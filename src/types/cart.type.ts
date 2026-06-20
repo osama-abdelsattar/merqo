@@ -2,7 +2,7 @@ import {
   ProductBrand,
   ProductCategory,
   ProductSubCategory,
-} from "./product.type";
+} from "@/types/product.type";
 
 interface CartItem {
   _id: string;

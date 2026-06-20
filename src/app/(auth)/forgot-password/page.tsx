@@ -9,7 +9,7 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { sendPasswordResetCode } from "@/actions/password-reset.action";
-import { useToastMutation } from "@/hooks/use-toast-mutation";
+import { useToastMutation } from "@/hooks/use-toast-mutation.hook";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

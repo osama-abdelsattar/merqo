@@ -25,7 +25,7 @@ const NAV_LINKS: NavLink[] = [
 
 const CATEGORY_LINKS: NavLink[] = categories?.map((category) => {
   return {
-    href: { pathname: "/products", query: { id: category._id } },
+    href: { pathname: "/products", query: { category: category._id } },
     label: category.name,
   };
 }) ?? [{ href: "/categories", label: "Categories" }];

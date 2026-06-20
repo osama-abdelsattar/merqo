@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import PasswordInput from "@/components/password-input";
+import PasswordInput from "@/components/common/password-input";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { useFormContext } from "react-hook-form";

@@ -1,5 +1,5 @@
 import { NAV_LINKS } from "@/config/navigation.config";
-import TooltipButton from "@/components/tooltip-button";
+import TooltipButton from "@/components/common/tooltip-button";
 import Link from "next/link";
 
 function NavLinks() {

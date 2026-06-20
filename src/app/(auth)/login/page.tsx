@@ -15,7 +15,7 @@ import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
-import ForgotPasswordLink from "@/components/forgot-password-link";
+import ForgotPasswordLink from "@/components/common/forgot-password-link";
 
 function LoginPage() {
   const router = useRouter();

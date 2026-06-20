@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useRouter, useSearchParams } from "next/navigation";
-import EmptyCard from "@/components/empty-card";
+import EmptyCard from "@/components/common/empty-card";
 import { Button } from "@/components/ui/button";
-import { useToastMutation } from "@/hooks/use-toast-mutation";
+import { useToastMutation } from "@/hooks/use-toast-mutation.hook";
 import {
   sendPasswordResetCode,
   verifyPasswordResetCode,

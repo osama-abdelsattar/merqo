@@ -4,7 +4,7 @@ import {
   PASSWORD_REGEX,
   PHONE_ERROR_MESSAGE,
   PHONE_REGEX,
-} from "./auth.schema";
+} from "@/lib/schemas/auth.schema";
 
 const accountInfoSchema = z.object({
   name: z

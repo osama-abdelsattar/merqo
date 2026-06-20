@@ -1,9 +1,10 @@
-import EmptyProducts from "@/app/(shop)/(home)/_components/cards/empty-products";
+import EmptyCard from "@/components/common/empty-card";
 import { getSpecificProduct } from "@/services/product.service";
 import ProductBreadcrumbs from "@/app/(shop)/product/_components/product-breadcrumbs";
 import ProductImage from "@/app/(shop)/product/_components/product-image";
 import ProductInfoCard from "@/app/(shop)/product/_components/product-info-card";
-import AnimatedSection from "@/components/animated-section";
+import AnimatedSection from "@/components/common/animated-section";
+import { PackageSearch } from "lucide-react";
 
 async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: productId } = await params;
@@ -12,7 +13,12 @@ async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   if (!product) {
     return (
       <div className="h-[calc(100vh-5rem)] flex justify-center items-center">
-        <EmptyProducts className="max-w-fit" />
+        <EmptyCard
+          icon={<PackageSearch />}
+          title="Product not found"
+          description="This product may have been removed or doesn't exist."
+          cta={{ href: "/products", text: "Browse Products" }}
+        />
       </div>
     );
   }

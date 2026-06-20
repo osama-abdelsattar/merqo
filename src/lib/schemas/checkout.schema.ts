@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { PHONE_ERROR_MESSAGE, PHONE_REGEX } from "./auth.schema";
+import { PHONE_ERROR_MESSAGE, PHONE_REGEX } from "@/lib/schemas/auth.schema";
 
 const shippingSchema = z.object({
   type: z.enum(["Cash", "Visa"]),

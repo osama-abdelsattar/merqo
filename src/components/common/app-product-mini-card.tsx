@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import Rating from "@/components/rating";
+import Rating from "@/components/common/rating";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types/product.type";
 import { cn } from "@/lib/utils";

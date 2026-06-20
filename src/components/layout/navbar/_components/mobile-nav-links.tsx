@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Item, ItemContent, ItemTitle } from "@/components/ui/item";
 import { Separator } from "@/components/ui/separator";
-import Badge from "../badge";
+import Badge from "@/components/layout/navbar/badge";
 import { NavLink } from "@/types/navigation.type";
 
 interface MobileNavLinksProps {

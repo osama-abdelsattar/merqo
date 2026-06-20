@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import PhoneInputField from "./_components/phone-input-field";
-import PasswordFieldWrapper from "./_components/password-field-wrapper";
-import DefaultFormInput from "./_components/default-form-input";
+import PhoneInputField from "@/components/_components/phone-input-field";
+import PasswordFieldWrapper from "@/components/_components/password-field-wrapper";
+import DefaultFormInput from "@/components/_components/default-form-input";
 
 interface FormFieldConfig {
   label: string;

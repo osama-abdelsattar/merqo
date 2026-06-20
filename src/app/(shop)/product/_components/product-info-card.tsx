@@ -1,5 +1,5 @@
-import QuantitySelect from "@/components/quantity-select";
-import Rating from "@/components/rating";
+import QuantitySelect from "@/components/common/quantity-select";
+import Rating from "@/components/common/rating";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

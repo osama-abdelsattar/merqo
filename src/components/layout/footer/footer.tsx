@@ -1,10 +1,10 @@
 "use client";
 import { SITE_INFO } from "@/config/site.config";
 import { Separator } from "@/components/ui/separator";
-import { useFooter } from "@/hooks/use-footer";
-import FooterBrandSection from "./_components/footer-brand-section";
-import FooterLinksSection from "./_components/footer-links-section";
-import FooterPaymentMethods from "./_components/footer-payment-methods";
+import { useFooter } from "@/hooks/use-footer.hook";
+import FooterBrandSection from "@/components/layout/footer/_components/footer-brand-section";
+import FooterLinksSection from "@/components/layout/footer/_components/footer-links-section";
+import FooterPaymentMethods from "@/components/layout/footer/_components/footer-payment-methods";
 
 function Footer() {
   const { footerSections: FOOTER_SECTIONS } = useFooter();

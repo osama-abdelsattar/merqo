@@ -1,4 +1,4 @@
-import CardLink from "@/components/card-link";
+import CardLink from "@/components/common/card-link";
 import { cn } from "@/lib/utils";
 import { SubCategory } from "@/types/category.type";
 

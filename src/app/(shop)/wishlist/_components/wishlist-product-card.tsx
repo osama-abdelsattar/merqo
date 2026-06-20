@@ -1,11 +1,11 @@
 "use client";
 
-import AppProductMiniCard from "@/components/app-product-mini-card";
+import AppProductMiniCard from "@/components/common/app-product-mini-card";
 import { Button } from "@/components/ui/button";
-import DeleteAlertButton from "@/components/delete-alert-button";
+import DeleteAlertButton from "@/components/common/delete-alert-button";
 import { Spinner } from "@/components/ui/spinner";
 import { XIcon } from "lucide-react";
-import AddToCartButton from "../../_components/add-to-cart-button";
+import AddToCartButton from "@/app/(shop)/_components/add-to-cart-button";
 import { removeFromWishlist } from "@/actions/wishlist.action";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import DeleteAlertButton from "@/components/delete-alert-button";
+import DeleteAlertButton from "@/components/common/delete-alert-button";
 import { Spinner } from "@/components/ui/spinner";
 import { Cart } from "@/types/cart.type";
 import { UseMutateFunction } from "@tanstack/react-query";

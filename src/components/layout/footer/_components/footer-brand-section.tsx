@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Brand from "@/components/layout/navbar-components/brand";
+import Brand from "@/components/layout/navbar/brand";
 import { SITE_INFO } from "@/config/site.config";
-import FooterSocialLinks from "./footer-social-links";
+import FooterSocialLinks from "@/components/layout/footer/_components/footer-social-links";
 
 function FooterBrandSection() {
   return (

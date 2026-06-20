@@ -1,5 +1,5 @@
-import Section from "@/components/section";
-import SectionHeader from "@/components/section-header";
+import Section from "@/components/common/section";
+import SectionHeader from "@/components/common/section-header";
 import { Skeleton } from "@/components/ui/skeleton";
 
 function loading() {

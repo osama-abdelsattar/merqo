@@ -2,7 +2,7 @@
 import * as React from "react";
 
 import { Wishlist, WishlistData } from "@/types/wishlist.type";
-import { useWishlist } from "@/hooks/use-wishlist";
+import { useWishlist } from "@/hooks/use-wishlist.hook";
 
 interface WishlistContextValue {
   wishlist: Wishlist | null;

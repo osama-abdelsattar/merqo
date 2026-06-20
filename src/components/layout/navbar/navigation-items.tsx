@@ -1,8 +1,8 @@
-import ThemeToggle from "@/components/layout/navbar-components/theme-toggle";
+import ThemeToggle from "@/components/layout/navbar/theme-toggle";
 import { Separator } from "@/components/ui/separator";
-import UserMenu from "@/components/layout/navbar-components/user-menu";
-import CategoriesMenu from "@/components/layout/navbar-components/categories-menu";
-import NavLinks from "@/components/layout/navbar-components/nav-links";
+import UserMenu from "@/components/layout/navbar/user-menu";
+import CategoriesMenu from "@/components/layout/navbar/categories-menu";
+import NavLinks from "@/components/layout/navbar/nav-links";
 
 function NavigationItems(props: React.ComponentProps<"ul">) {
   return (

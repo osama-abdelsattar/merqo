@@ -3,7 +3,7 @@ import React from "react";
 
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import TooltipButton from "@/components/tooltip-button";
+import TooltipButton from "@/components/common/tooltip-button";
 import { toast } from "sonner";
 
 function ThemeToggle() {

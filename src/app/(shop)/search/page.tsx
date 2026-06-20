@@ -3,27 +3,40 @@ import SectionHeader from "@/components/common/section-header";
 import EmptyCard from "@/components/common/empty-card";
 import { getAllProducts } from "@/services/product.service";
 import ProductCard from "@/app/(shop)/(home)/_components/cards/product-card";
-import Pagination from "@/app/(shop)/products/_components/pagination";
 import { PackageSearch } from "lucide-react";
 import { SearchParams } from "next/dist/server/request/search-params";
 
-async function AllProducts({
+async function SearchPage({
   searchParams,
 }: {
   searchParams: Promise<SearchParams>;
 }) {
   const params = await searchParams;
 
-  const allProducts = await getAllProducts(params);
+  const products = await getAllProducts();
 
-  if (!allProducts || allProducts.data.length <= 0)
+  const getRequestedProducts = async () => {
+    if (!products) return null;
+
+    const query = params.query as string;
+
+    return products.data.filter(
+      (product) =>
+        product.title.toLowerCase().includes(query.toLowerCase()) ||
+        product.category.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.brand.name.toLowerCase().includes(query.toLowerCase()),
+    );
+  };
+
+  const searchedProducts = await getRequestedProducts();
+  if (!searchedProducts || searchedProducts.length <= 0)
     return (
       <AnimatedSection>
-        <SectionHeader level="h1">Products</SectionHeader>
+        <SectionHeader level="h1">Search Products</SectionHeader>
         <EmptyCard
           icon={<PackageSearch />}
-          title="No products found"
-          description="Try adjusting your filters or browse a different category."
+          title="No products matches your search"
+          description="Try adjusting your search or browse a different category."
           cta={{ href: "/categories", text: "Browse Categories" }}
         />
       </AnimatedSection>
@@ -31,17 +44,14 @@ async function AllProducts({
 
   return (
     <AnimatedSection>
-      <SectionHeader level="h1">Products</SectionHeader>
+      <SectionHeader level="h1">Search Products</SectionHeader>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {allProducts.data.map((product) => (
+        {searchedProducts.map((product) => (
           <ProductCard key={product._id} product={product} className="pt-0" />
         ))}
-        <div className="col-span-full">
-          <Pagination metadata={allProducts.metadata} />
-        </div>
       </div>
     </AnimatedSection>
   );
 }
 
-export default AllProducts;
+export default SearchPage;

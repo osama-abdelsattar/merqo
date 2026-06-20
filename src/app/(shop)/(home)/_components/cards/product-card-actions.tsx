@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { EyeIcon } from "lucide-react";
-import TooltipButton from "@/components/tooltip-button";
+import TooltipButton from "@/components/common/tooltip-button";
 import WishlistButton from "@/app/(shop)/_components/wishlist-button";
 
 function ProductCardActions({ productID }: { productID: string }) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { AUTH_FIELDS } from "@/config/auth-forms.config";
-import AppFormField from "@/components/app-form-field";
+import AppFormField from "@/components/common/app-form-field";
 import { FormItem } from "@/components/ui/form";
 import React from "react";
 

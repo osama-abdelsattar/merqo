@@ -1,7 +1,7 @@
 "use client";
 
 import { Toaster } from "@/components/ui/sonner";
-import { useBreakpoint } from "@/hooks/use-breakpoint";
+import { useBreakpoint } from "@/hooks/use-breakpoint.hook";
 
 /**
  * Isolated component for the toast notification system.

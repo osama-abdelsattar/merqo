@@ -2,14 +2,14 @@
 import * as React from "react";
 
 import { Toggle } from "@/components/ui/toggle";
-import ToggleButton from "@/components/toggle-button";
+import ToggleButton from "@/components/common/toggle-button";
 import { HeartIcon } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
 import { Product } from "@/types/product.type";
 import { useQueryClient } from "@tanstack/react-query";
 import { addToWishlist, removeFromWishlist } from "@/actions/wishlist.action";
 import { useWishlistContext } from "@/context/wishlist.context";
-import { useToastMutation } from "@/hooks/use-toast-mutation";
+import { useToastMutation } from "@/hooks/use-toast-mutation.hook";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ExternalToast } from "sonner";

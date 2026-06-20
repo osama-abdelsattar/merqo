@@ -1,15 +1,24 @@
-import AnimatedSection from "@/components/animated-section";
-import EmptyCard from "@/components/empty-card";
-import SectionHeader from "@/components/section-header";
+import AnimatedSection from "@/components/common/animated-section";
+import EmptyCard from "@/components/common/empty-card";
+import SectionHeader from "@/components/common/section-header";
 import { getAllBrands } from "@/services/brand.service";
-import { CTA } from "@/types/hero-slide.type";
 import BrandCard from "./_components/brand-card";
+import { Store } from "lucide-react";
 
 async function Brands() {
   const brands = await getAllBrands();
-  const CTA: CTA = { text: "categories", href: "/categories" };
 
-  if (!brands) return <EmptyCard title="brands" cta={CTA} />;
+  if (!brands)
+    return (
+      <AnimatedSection>
+        <SectionHeader level="h1">Brands</SectionHeader>
+        <EmptyCard
+          icon={<Store />}
+          title="No brands found"
+          cta={{ text: "Browse Categories", href: "/categories" }}
+        />
+      </AnimatedSection>
+    );
 
   return (
     <AnimatedSection>

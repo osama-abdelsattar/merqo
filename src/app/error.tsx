@@ -1,5 +1,6 @@
 "use client";
 
+import AnimatedSection from "@/components/common/animated-section";
 import { Button } from "@/components/ui/button";
 import {
   Empty,
@@ -13,7 +14,7 @@ import { AlertCircleIcon, RotateCcwIcon } from "lucide-react";
 
 function GlobalError({ error }: { error: Error & { digest?: string } }) {
   return (
-    <section className="min-h-[calc(100dvh-5rem)] flex items-center justify-center px-6">
+    <AnimatedSection className="min-h-[calc(100dvh-5rem)] flex items-center justify-center px-6">
       <Empty className="max-w-lg mx-auto gap-6 border rounded-4xl">
         <EmptyHeader>
           <EmptyMedia variant="icon">
@@ -32,7 +33,7 @@ function GlobalError({ error }: { error: Error & { digest?: string } }) {
           </Button>
         </EmptyContent>
       </Empty>
-    </section>
+    </AnimatedSection>
   );
 }
 

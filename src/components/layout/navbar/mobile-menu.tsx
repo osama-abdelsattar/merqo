@@ -21,7 +21,7 @@ import {
   USER_MENU_LINKS,
 } from "@/config/navigation.config";
 import { Separator } from "@/components/ui/separator";
-import SearchField from "@/components/layout/navbar-components/search-field";
+import SearchField from "@/components/layout/navbar/search-field";
 import { useSession } from "next-auth/react";
 import {
   Item,
@@ -29,11 +29,11 @@ import {
   ItemTitle,
   ItemActions,
 } from "@/components/ui/item";
-import ThemeToggle from "@/components/layout/navbar-components/theme-toggle";
-import MobileCategoriesSection from "./_components/mobile-categories-section";
-import MobileNavLinks from "./_components/mobile-nav-links";
-import MobileAuthButtons from "./_components/mobile-auth-buttons";
-import ProfileItem from "./_components/profile-item";
+import ThemeToggle from "@/components/layout/navbar/theme-toggle";
+import MobileCategoriesSection from "@/components/layout/navbar/_components/mobile-categories-section";
+import MobileNavLinks from "@/components/layout/navbar/_components/mobile-nav-links";
+import MobileAuthButtons from "@/components/layout/navbar/_components/mobile-auth-buttons";
+import ProfileItem from "@/components/layout/navbar/_components/profile-item";
 
 function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
   const { data: session } = useSession();
@@ -65,7 +65,10 @@ function MobileMenu(props: React.ComponentProps<typeof Drawer>) {
         />
         <ScrollArea className="grow overflow-y-hidden border-y">
           <div className="p-4 flex flex-col gap-4">
-            <SearchField className="sm:hidden w-full" />
+            <SearchField
+              className="sm:hidden w-full"
+              onSearch={handleLinkClick}
+            />
             <MobileCategoriesSection
               categories={CATEGORY_LINKS}
               onLinkClick={handleLinkClick}

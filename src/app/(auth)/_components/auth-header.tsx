@@ -1,4 +1,4 @@
-import ThemeToggle from "@/components/layout/navbar-components/theme-toggle";
+import ThemeToggle from "@/components/layout/navbar/theme-toggle";
 import {
   CardAction,
   CardDescription,

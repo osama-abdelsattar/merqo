@@ -1,7 +1,7 @@
 "use client";
 import { SITE_INFO } from "@/config/site.config";
 import BannerCard from "@/app/(shop)/(home)/_components/cards/banner-card";
-import AnimatedSection from "@/components/animated-section";
+import AnimatedSection from "@/components/common/animated-section";
 
 function PromoCodes() {
   return (

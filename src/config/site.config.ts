@@ -1,4 +1,4 @@
-import Logo from "@/components/layout/navbar-components/logo";
+import Logo from "@/components/layout/navbar/logo";
 import { Info } from "@/types/site.type";
 import {
   HeadphonesIcon,
@@ -95,7 +95,7 @@ const SITE_INFO: Info = {
       promoCode: "ORGANIC40",
       CTA: {
         label: "Shop the Deal",
-        href: "/products?category=fruits&deal=true",
+        href: "/products",
       },
     },
     {
@@ -111,7 +111,7 @@ const SITE_INFO: Info = {
       promoCode: "FRESH25",
       CTA: {
         label: "Explore Now",
-        href: "/products?category=vegetables&filter=new",
+        href: "/products?sort=-updatedAt",
       },
     },
   ],

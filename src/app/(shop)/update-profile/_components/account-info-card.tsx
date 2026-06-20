@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Spinner } from "@/components/ui/spinner";
-import { useToastMutation } from "@/hooks/use-toast-mutation";
+import { useToastMutation } from "@/hooks/use-toast-mutation.hook";
 import {
   accountInfoSchema,
   AccountInfoValues,
