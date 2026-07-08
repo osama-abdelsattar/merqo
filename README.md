@@ -63,7 +63,14 @@ The project follows strict engineering standards to ensure scalability and type 
    ```
 
 3. Set up environment variables:
-   Copy `.env.example` to `.env.local` and fill in your credentials.
+   Copy `.env.example` to `.env.local` and fill in the required fields:
+
+   ```env
+   NEXT_PUBLIC_API_BASE_URL=   # Backend API base URL (must end with a slash, e.g., https://api.example.com/)
+   NEXTAUTH_SECRET=            # A random string used to encrypt JWT tokens / cookies
+   NEXTAUTH_URL=               # Canonical URL of the site (e.g., http://localhost:3000)
+   NEXT_PUBLIC_SITE_URL=       # (Optional) Public site URL fallback
+   ```
 
 4. Run the development server:
 
@@ -79,8 +86,10 @@ merqo/
 │   ├── app/                  # Next.js App Router (Routes & Groups)
 │   ├── actions/              # Domain-specific Server Actions (Cart, Orders, etc.)
 │   ├── components/           # UI Components
-│   │   ├── layout/           # Shared Layout (Navbar, Footer, Toaster)
-│   │   └── ui/               # Shadcn UI Components
+│   │   ├── _components/      # Internal helper components (Auth inputs)
+│   │   ├── common/           # Shared reusable components (buttons, rating, form inputs)
+│   │   ├── layout/           # Global layouts (Navbar, Footer, Toaster)
+│   │   └── ui/               # Base UI primitives (Shadcn UI)
 │   ├── config/               # Application Configuration
 │   ├── constants/            # Global Constants (Breakpoints, etc.)
 │   ├── context/              # State management
@@ -92,6 +101,7 @@ merqo/
 │   ├── types/                # Strict TypeScript Definitions
 │   └── utils/                # Pure Utility Functions
 ├── public/                   # Static Assets
+├── .env.example              # Template for environment variables
 └── proxy.ts                  # Next.js 16 Middleware (renamed to proxy.ts)
 ```
 
